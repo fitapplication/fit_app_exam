@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
     onSurface: Colors.black.withOpacity(1),
     padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 40.0),
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: BorderRadius.all(Radius.circular(25)),
     ),
   );
   // int steps=0;
@@ -42,188 +42,83 @@ class HomePage extends StatelessWidget {
             backgroundColor: Colors.lightBlue[200],
             centerTitle: true),
         body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://images.unsplash.com/photo-1545132147-d037e6c54cfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBsYW5lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"),
-                    fit: BoxFit.cover)),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                    top: 20,
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          // new TextField(
-                          //   decoration: new InputDecoration(
-                          //     hintText: "Type your name here!"
-                          //   ),
-                          //   onSubmitted: (String str) {
-                          //     setState(() {
-                          //       result = str;
-                          //     });
-                          //   }
-                          // ),
-
-                          ElevatedButton(
-                              style: elevatedButtonStyle,
-                              onPressed: null,
-                              child: Column(children: const [
-                                Text("Hi Gabriele!",
+          //     decoration: const BoxDecoration(
+          //       image: DecorationImage(
+          //         image: NetworkImage("https://images.unsplash.com/photo-1545132147-d037e6c54cfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBsYW5lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"),
+          //         fit: BoxFit.cover)
+          //     ),
+          child: Stack(children: <Widget>[
+            Container(
+                alignment: Alignment.center,
+                child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      ElevatedButton(
+                          style: elevatedButtonStyle,
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Tamagotchi();
+                            }));
+                          },
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const [
+                                Text("Tamagotchi",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 20,
+                                        fontSize: 25,
                                         color: Colors.white70)),
                                 // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
-                                Text("You are - n steps away from your goal",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
-                                        color: Colors.white70)),
-                                Icon(Icons.directions_walk,
+                                Icon(Icons.pets,
                                     color: Colors.white70, size: 50.0),
-                              ]))
-                        ])),
-                Positioned(
-                    top: 220,
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text("Tamagotchi",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
-                                  color: Colors.white70)),
-                          IconButton(
-                              icon: const Icon(Icons.checklist,
-                                  color: Colors.white70),
-                              iconSize: 70.0,
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return Tamagotchi();
-                                }));
-                              }),
-                        ])),
-                Positioned(
-                    top: 340,
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text("Graphs",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
-                                  color: Colors.white70)),
-                          IconButton(
-                              icon: const Icon(Icons.leaderboard,
-                                  color: Colors.white70),
-                              iconSize: 70.0,
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return Graphs();
-                                }));
-                              }),
-                        ])),
-                Positioned(
-                    top: 460,
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text("Recap!",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
-                                  color: Colors.white70)),
-                          IconButton(
-                              icon: const Icon(Icons.workspace_premium,
-                                  color: Colors.white70),
-                              iconSize: 70.0,
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return Recap();
-                                }));
-                              }),
-                        ])),
-                Positioned(
-                    top: 580,
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text("Friends log",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
-                                  color: Colors.white70)),
-                          IconButton(
-                              icon: const Icon(Icons.people_alt,
-                                  color: Colors.white70),
-                              iconSize: 70.0,
-                              onPressed: () {
-                                Navigator.of(context).pushNamed("/FriendsPage");
-                              }),
-                        ])),
-              ],
-            )));
-  }
-}
-
-class FriendsPage extends StatelessWidget {
-  final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
-    primary: Colors.deepOrange,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: const Text("Friend log"),
-            backgroundColor: Colors.lightBlue[200],
-            centerTitle: true),
-        body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://images.unsplash.com/photo-1548705085-101177834f47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"),
-                    fit: BoxFit.cover)),
-            child: Center(
-                child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                  const Text("You are --- among your friends!",
-                      textAlign: TextAlign.left,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  const Text("Keep up!",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 15)),
-                  Icon(Icons.group_add, color: Colors.indigo[900], size: 70.0),
-                  ElevatedButton(
-                    style: elevatedButtonStyle,
-                    onPressed: () => {
-                      null,
-                    },
-                    child: const Text("Add a friend",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15)),
-                  )
-                ]))));
+                              ])),
+                      ElevatedButton(
+                          style: elevatedButtonStyle,
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Graphs();
+                            }));
+                          },
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const [
+                                Text("Graphs",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 25,
+                                        color: Colors.white70)),
+                                // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
+                                Icon(Icons.insert_chart_outlined_outlined,
+                                    color: Colors.white70, size: 50.0),
+                              ])),
+                      ElevatedButton(
+                          style: elevatedButtonStyle,
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Recap();
+                            }));
+                          },
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const [
+                                Text("Profile",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 25,
+                                        color: Colors.white70)),
+                                // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
+                                Icon(Icons.person,
+                                    color: Colors.white70, size: 50.0),
+                              ])),
+                    ]))
+          ]),
+        ));
   }
 }
