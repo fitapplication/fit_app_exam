@@ -5,6 +5,8 @@ import 'package:fit_app_exam/Screens/screen_3.dart';
 
 void main() {
   runApp(MaterialApp(home: HomePage(), routes: <String, WidgetBuilder>{}));
+  theme:
+  new ThemeData(scaffoldBackgroundColor: const Color(0xffe4dad0));
 }
 
 // class Name extends StatefulWidget{
@@ -17,14 +19,6 @@ void main() {
 class HomePage extends StatelessWidget {
   // String result = "";
 
-  final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
-    elevation: 50.0,
-    onSurface: Colors.black.withOpacity(1),
-    padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 40.0),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(25)),
-    ),
-  );
   // int steps=0;
   // int goal=1000000;
   // int daily_goal=8000;
@@ -39,7 +33,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             title: const Text("Home"),
-            backgroundColor: Colors.lightBlue[200],
+            backgroundColor: Color(0xff77DD77),
             centerTitle: true),
         body: Container(
           //     decoration: const BoxDecoration(
@@ -49,73 +43,125 @@ class HomePage extends StatelessWidget {
           //     ),
           child: Stack(children: <Widget>[
             Container(
+                width: double.infinity,
                 alignment: Alignment.center,
                 child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       ElevatedButton(
-                          style: elevatedButtonStyle,
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff4dc590),
+                            elevation: 50.0,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 2.5),
+                            maximumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 2.5),
+                            onSurface: Colors.black.withOpacity(1),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50.0, vertical: 40.0),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                          ),
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return Tamagotchi();
                             }));
                           },
-                          child: Column(
+                          child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: const [
                                 Text("Tamagotchi",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 25,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30,
                                         color: Colors.white70)),
+
                                 // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
                                 Icon(Icons.pets,
                                     color: Colors.white70, size: 50.0),
                               ])),
                       ElevatedButton(
-                          style: elevatedButtonStyle,
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff65a4d9),
+                            elevation: 50.0,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 2.5),
+                            maximumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 2.5),
+                            onSurface: Colors.black.withOpacity(1),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50.0, vertical: 40.0),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                          ),
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return Graphs();
                             }));
                           },
-                          child: Column(
+                          child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: const [
                                 Text("Graphs",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 25,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30,
                                         color: Colors.white70)),
                                 // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
                                 Icon(Icons.insert_chart_outlined_outlined,
                                     color: Colors.white70, size: 50.0),
                               ])),
                       ElevatedButton(
-                          style: elevatedButtonStyle,
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xfff37145),
+                            elevation: 50.0,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 2.5),
+                            maximumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 2.5),
+                            onSurface: Colors.black.withOpacity(1),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50.0, vertical: 40.0),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                          ),
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return Recap();
                             }));
                           },
-                          child: Column(
+                          child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: const [
                                 Text("Profile",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 25,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30,
                                         color: Colors.white70)),
-                                // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
-                                Icon(Icons.person,
-                                    color: Colors.white70, size: 50.0),
+                                Icon(
+                                  Icons.person,
+                                  color: Colors.white70,
+                                  size: 50.0,
+                                ),
                               ])),
                     ]))
           ]),
