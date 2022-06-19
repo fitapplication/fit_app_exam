@@ -55,10 +55,10 @@ class HomePage extends StatelessWidget {
                             elevation: 50.0,
                             minimumSize: Size(
                                 MediaQuery.of(context).size.height / 1.9,
-                                MediaQuery.of(context).size.width / 2.5),
+                                MediaQuery.of(context).size.width / 3.1),
                             maximumSize: Size(
                                 MediaQuery.of(context).size.height / 1.9,
-                                MediaQuery.of(context).size.width / 2.5),
+                                MediaQuery.of(context).size.width / 3.1),
                             onSurface: Colors.black.withOpacity(1),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 50.0, vertical: 40.0),
@@ -93,10 +93,10 @@ class HomePage extends StatelessWidget {
                             elevation: 50.0,
                             minimumSize: Size(
                                 MediaQuery.of(context).size.height / 1.9,
-                                MediaQuery.of(context).size.width / 2.5),
+                                MediaQuery.of(context).size.width / 3.1),
                             maximumSize: Size(
                                 MediaQuery.of(context).size.height / 1.9,
-                                MediaQuery.of(context).size.width / 2.5),
+                                MediaQuery.of(context).size.width / 3.1),
                             onSurface: Colors.black.withOpacity(1),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 50.0, vertical: 40.0),
@@ -130,10 +130,10 @@ class HomePage extends StatelessWidget {
                             elevation: 50.0,
                             minimumSize: Size(
                                 MediaQuery.of(context).size.height / 1.9,
-                                MediaQuery.of(context).size.width / 2.5),
+                                MediaQuery.of(context).size.width / 3.1),
                             maximumSize: Size(
                                 MediaQuery.of(context).size.height / 1.9,
-                                MediaQuery.of(context).size.width / 2.5),
+                                MediaQuery.of(context).size.width / 3.1),
                             onSurface: Colors.black.withOpacity(1),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 50.0, vertical: 40.0),
@@ -162,6 +162,43 @@ class HomePage extends StatelessWidget {
                                   color: Colors.white70,
                                   size: 50.0,
                                 ),
+                              ])),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xfff4d793),
+                            elevation: 50.0,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 3.1),
+                            maximumSize: Size(
+                                MediaQuery.of(context).size.height / 1.9,
+                                MediaQuery.of(context).size.width / 3.1),
+                            onSurface: Colors.black.withOpacity(1),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50.0, vertical: 40.0),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Graphs();
+                            }));
+                          },
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const [
+                                Text("Settings",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30,
+                                        color: Colors.white70)),
+                                // new Text("Steps Counter", textAlign: TextAlign.left, style: const TextStyle(fontSize:15, color:Colors.amber)),
+                                Icon(Icons.settings,
+                                    color: Colors.white70, size: 50.0),
                               ])),
                     ]))
           ]),
