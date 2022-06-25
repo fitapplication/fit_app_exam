@@ -1,5 +1,6 @@
 import 'package:fit_app_exam/Screens/homescreen.dart';
 import 'package:flutter/material.dart';
+import 'Screens/fetch_fit.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,10 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //This specifies the app entrypoint
-      initialRoute: HomePage.route,
+      initialRoute: FetchFit.route,
       //This maps names to the set of routes within the app
       routes: {
-        HomePage.route: (context) => HomePage(),
+        FetchFit.route: (context) => FetchFit(),
       },
     );
   } //build
