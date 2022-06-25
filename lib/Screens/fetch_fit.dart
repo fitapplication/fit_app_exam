@@ -2,6 +2,7 @@ import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/strings.dart';
+import 'package:fit_app_exam/Screens/homescreen.dart';
 
 class FetchFit extends StatelessWidget {
   FetchFit({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class FetchFit extends StatelessWidget {
                 //Fetch data
                 final stepsData = await fitbitActivityTimeseriesDataManager
                     .fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-                  date: DateTime.now().subtract(Duration(days: 1)),
+                  date: DateTime.now().subtract(Duration(days: 0)),
                   userID: userId,
                   resource: fitbitActivityTimeseriesDataManager.type,
                 )) as List<FitbitActivityTimeseriesData>;
@@ -55,13 +56,12 @@ class FetchFit extends StatelessWidget {
               child: Text('Tap to authorize'),
             ),
             ElevatedButton(
-              onPressed: () async {
-                await FitbitConnector.unauthorize(
-                  clientID: Strings.fitbitClientID,
-                  clientSecret: Strings.fitbitClientSecret,
-                );
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HomePage();
+                }));
               },
-              child: Text('Tap to unauthorize'),
+              child: Text('Go to App'),
             ),
           ],
         ),
