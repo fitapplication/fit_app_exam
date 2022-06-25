@@ -1,6 +1,33 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-int test = 1;
+var sleepHours = Random().nextDouble() * 10;
+var exerciceHours = Random().nextDouble() * 4;
+
+int algorithm(var sleepHours, var exerciceHours) {
+  int par2 = 0;
+  int par1 = 0;
+  int results = 0;
+
+  if (sleepHours < 8) {
+    par1 = (sleepHours - 8) / 8;
+  }
+  if (exerciceHours < 2) {
+    par2 = (exerciceHours - 2) / 2;
+  }
+  if (par1 == par2) {
+    results = 3;
+  } else if (par2 < par1) {
+    results = 2;
+  } else if (par1 < par2) {
+    results = 1;
+  }
+
+  return results;
+}
+
+int test = algorithm(sleepHours, exerciceHours);
 
 String check(int test) {
   String imagecheck = '';
