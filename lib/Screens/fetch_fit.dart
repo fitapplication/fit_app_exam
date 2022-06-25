@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/strings.dart';
 import 'package:fit_app_exam/Screens/homescreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FetchFit extends StatelessWidget {
   FetchFit({Key? key}) : super(key: key);
@@ -44,14 +47,24 @@ class FetchFit extends StatelessWidget {
                 );
 
                 //Fetch data
-                final stepsData = await fitbitActivityTimeseriesDataManager
-                    .fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-                  date: DateTime.now().subtract(Duration(days: 0)),
-                  userID: userId,
-                  resource: fitbitActivityTimeseriesDataManager.type,
-                )) as List<FitbitActivityTimeseriesData>;
-                print(stepsData);
-                // Use them as you want
+                var step_list = ['', '', '', '', '', '', ''];
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                for (var i = 0; i < 7; i++) {
+                  final stepsData = await fitbitActivityTimeseriesDataManager
+                      .fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+                    date: DateTime.now().subtract(Duration(days: i)),
+                    userID: userId,
+                    resource: fitbitActivityTimeseriesDataManager.type,
+                  )) as List<FitbitActivityTimeseriesData>;
+
+                  var steps_info = stepsData.toString().split(':');
+                  String K = steps_info[6];
+                  var step_day = K.split(',');
+
+                  step_list[i] = step_day[0];
+                }
+                await sp.setStringList('step', step_list);
+                print(step_list);
               },
               child: Text('Tap to authorize'),
             ),
