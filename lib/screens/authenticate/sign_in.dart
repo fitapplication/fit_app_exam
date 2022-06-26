@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.black54,
+              backgroundColor: Color(0XFF1e665b),
               elevation: 0.0,
               title: Text('Sign-in to FitPet'),
               actions: <Widget>[
@@ -40,60 +40,62 @@ class _SignInState extends State<SignIn> {
                     label: Text('Register'))
               ],
             ),
-            body: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+            body: Center(
                 child: Form(
                     key: _formKey,
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(height: 20.0),
-                        TextFormField(
-                            decoration:
-                                textInputDecoration.copyWith(hintText: 'Email'),
-                            validator: (val) =>
-                                val!.isEmpty ? 'Enter Email' : null,
-                            onChanged: (val) {
-                              setState(() => email = val);
-                            }),
-                        TextFormField(
-                            decoration: textInputDecoration.copyWith(
-                                hintText: 'Password'),
-                            obscureText: true,
-                            validator: (val) => val!.length < 6
-                                ? 'Enter password 6+ char long'
-                                : null,
-                            onChanged: (val) {
-                              setState(() => password = val);
-                            }),
-                        SizedBox(height: 20.0),
-                        RaisedButton(
-                            color: Colors.pink[600],
-                            child: Text(
-                              'Sign in',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                setState(() => loading = true);
-                                dynamic result =
-                                    await _auth.signInWithEmailAndPassword(
-                                        email, password);
+                    child: SingleChildScrollView(
+                        padding: EdgeInsets.all(5),
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(height: 20.0),
+                            TextFormField(
+                                decoration: textInputDecoration.copyWith(
+                                    hintText: 'Email'),
+                                validator: (val) =>
+                                    val!.isEmpty ? 'Enter Email' : null,
+                                onChanged: (val) {
+                                  setState(() => email = val);
+                                }),
+                            TextFormField(
+                                decoration: textInputDecoration.copyWith(
+                                    hintText: 'Password'),
+                                obscureText: true,
+                                validator: (val) => val!.length < 6
+                                    ? 'Enter password 6+ char long'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => password = val);
+                                }),
+                            SizedBox(height: 20.0),
+                            RaisedButton(
+                                color: Color(0XFF1e665b),
+                                child: Text(
+                                  'Sign in',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    setState(() => loading = true);
+                                    dynamic result =
+                                        await _auth.signInWithEmailAndPassword(
+                                            email, password);
 
-                                if (result == null) {
-                                  setState(() {
-                                    loading = false;
-                                    error =
-                                        'Could not sign in with those credentials';
-                                  });
-                                }
-                              }
-                            }),
-                        SizedBox(height: 12.0),
-                        Text(
-                          error,
-                          style: TextStyle(color: Colors.red, fontSize: 14.0),
-                        ),
-                      ],
-                    ))));
+                                    if (result == null) {
+                                      setState(() {
+                                        loading = false;
+                                        error =
+                                            'Could not sign in with those credentials';
+                                      });
+                                    }
+                                  }
+                                }),
+                            SizedBox(height: 12.0),
+                            Text(
+                              error,
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 14.0),
+                            ),
+                          ],
+                        )))));
   }
 }

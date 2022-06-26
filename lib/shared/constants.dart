@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 const textInputDecoration = InputDecoration(
-  fillColor: Color.fromARGB(255, 68, 211, 255),
+  fillColor: Color(0XFFb1e0d6),
   filled: true,
   enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white, width: 2.0)),
+      borderSide: BorderSide(color: Color(0XFF1e9889), width: 2.0)),
   focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.pink, width: 2.0)),
+      borderSide: BorderSide(color: Color(0XFF1e9889), width: 2.0)),
 );

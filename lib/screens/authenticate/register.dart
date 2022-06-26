@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.black54,
+              backgroundColor: Color(0XFF1e665b),
               elevation: 0.0,
               title: Text('Sign-up to FitPet'),
               actions: <Widget>[
@@ -39,11 +39,12 @@ class _RegisterState extends State<Register> {
                     label: Text('Sign in'))
               ],
             ),
-            body: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+            body: Center(
                 child: Form(
                     key: _formKey,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         SizedBox(height: 20.0),
                         TextFormField(
@@ -66,7 +67,7 @@ class _RegisterState extends State<Register> {
                             }),
                         SizedBox(height: 20.0),
                         RaisedButton(
-                            color: Colors.pink[600],
+                            color: Color(0XFF1e665b),
                             child: Text(
                               'Register',
                               style: TextStyle(color: Colors.white),
