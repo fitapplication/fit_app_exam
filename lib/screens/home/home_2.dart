@@ -1,15 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:loginfede/models/pet.dart';
-import 'package:loginfede/screens/home/profileedit.dart';
-import 'package:loginfede/screens/home/setting_form.dart';
-import 'package:loginfede/screens/stats.dart';
-import 'package:loginfede/services/auth.dart';
-import 'package:loginfede/services/database.dart';
-import 'package:loginfede/shared/loading.dart';
+import 'package:fit_app_exam/models/pet.dart';
+import 'package:fit_app_exam/screens/home/profileedit.dart';
+import 'package:fit_app_exam/screens/home/setting_form.dart';
+import 'package:fit_app_exam/screens/stats.dart';
+import 'package:fit_app_exam/services/auth.dart';
+import 'package:fit_app_exam/services/database.dart';
+import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:loginfede/models/user.dart';
+import 'package:fit_app_exam/models/user.dart';
 
 int algorithm(var sleepHours, var exerciceHours) {
   double par2 = 0;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loginfede/models/user.dart';
-import 'package:loginfede/screens/wrapper.dart';
+import 'package:fit_app_exam/models/user.dart';
+import 'package:fit_app_exam/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:loginfede/services/auth.dart';
+import 'package:fit_app_exam/services/auth.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

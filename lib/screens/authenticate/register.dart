@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loginfede/services/auth.dart';
-import 'package:loginfede/shared/constants.dart';
-import 'package:loginfede/shared/loading.dart';
+import 'package:fit_app_exam/services/auth.dart';
+import 'package:fit_app_exam/shared/constants.dart';
+import 'package:fit_app_exam/shared/loading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Register extends StatefulWidget {

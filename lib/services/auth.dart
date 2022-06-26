@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:loginfede/models/user.dart';
-import 'package:loginfede/screens/authenticate/register.dart';
-import 'package:loginfede/services/database.dart';
+import 'package:fit_app_exam/models/user.dart';
+import 'package:fit_app_exam/screens/authenticate/register.dart';
+import 'package:fit_app_exam/services/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {

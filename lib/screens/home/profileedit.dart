@@ -1,15 +1,15 @@
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:loginfede/models/pet.dart';
-import 'package:loginfede/models/user.dart';
-import 'package:loginfede/screens/home/pet_list.dart';
-import 'package:loginfede/screens/home/setting_form.dart';
-import 'package:loginfede/screens/strings.dart';
-import 'package:loginfede/services/auth.dart';
-import 'package:loginfede/services/database.dart';
-import 'package:loginfede/shared/constants.dart';
-import 'package:loginfede/shared/loading.dart';
+import 'package:fit_app_exam/models/pet.dart';
+import 'package:fit_app_exam/models/user.dart';
+import 'package:fit_app_exam/screens/home/pet_list.dart';
+import 'package:fit_app_exam/screens/home/setting_form.dart';
+import 'package:fit_app_exam/screens/strings.dart';
+import 'package:fit_app_exam/services/auth.dart';
+import 'package:fit_app_exam/services/database.dart';
+import 'package:fit_app_exam/shared/constants.dart';
+import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loginfede/models/pet.dart';
+import 'package:fit_app_exam/models/pet.dart';
 
 class PetTile extends StatelessWidget {
   final pet person;

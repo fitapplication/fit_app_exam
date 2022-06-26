@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:loginfede/models/pet.dart';
-import 'package:loginfede/models/user.dart';
-import 'package:loginfede/screens/authenticate/register.dart';
+import 'package:fit_app_exam/models/pet.dart';
+import 'package:fit_app_exam/models/user.dart';
+import 'package:fit_app_exam/screens/authenticate/register.dart';
 
 class DatabaseService {
   final String uid;

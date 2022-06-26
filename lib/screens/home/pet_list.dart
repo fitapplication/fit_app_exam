@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loginfede/models/pet.dart';
-import 'package:loginfede/shared/loading.dart';
+import 'package:fit_app_exam/models/pet.dart';
+import 'package:fit_app_exam/shared/loading.dart';
+import 'package:fit_app_exam/screens/home/pet_tile.dart';
 import 'package:provider/provider.dart';
-import 'package:loginfede/screens/home/pet_tile.dart';
 
 class PetList extends StatefulWidget {
   const PetList({Key? key}) : super(key: key);

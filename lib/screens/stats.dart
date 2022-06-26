@@ -1,5 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:loginfede/screens/strings.dart';
+import 'package:fit_app_exam/screens/strings.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
