@@ -6,8 +6,8 @@ var sleepHours = Random().nextDouble() * 10;
 var exerciceHours = Random().nextDouble() * 4;
 
 int algorithm(var sleepHours, var exerciceHours) {
-  int par2 = 0;
-  int par1 = 0;
+  double par2 = 0;
+  double par1 = 0;
   int results = 0;
 
   if (sleepHours < 8) {
