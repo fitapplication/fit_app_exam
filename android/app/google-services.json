@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1006272933347",
+    "project_id": "appuni-95dd7",
+    "storage_bucket": "appuni-95dd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006272933347:android:c9fdbb81abea420b0004d6",
+        "android_client_info": {
+          "package_name": "com.example.loginfede"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006272933347-3mfme49k2qqem5dfm4h90jhqit4ei9ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJuX3pFmQ8T7ylRk3Czxx85r1UPMpYPkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006272933347-3mfme49k2qqem5dfm4h90jhqit4ei9ep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

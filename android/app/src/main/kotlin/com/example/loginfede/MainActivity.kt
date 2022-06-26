@@ -1,4 +1,4 @@
-package com.example.fit_app_exam
+package com.example.loginfede
 
 import io.flutter.embedding.android.FlutterActivity
 

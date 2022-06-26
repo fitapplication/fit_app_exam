@@ -1,22 +1,28 @@
-import 'package:fit_app_exam/Screens/homescreen.dart';
 import 'package:flutter/material.dart';
-import 'Screens/fetch_fit.dart';
+import 'package:loginfede/models/user.dart';
+import 'package:loginfede/screens/wrapper.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:loginfede/services/auth.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
-} //main
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      //This specifies the app entrypoint
-      initialRoute: FetchFit.route,
-      //This maps names to the set of routes within the app
-      routes: {
-        FetchFit.route: (context) => FetchFit(),
-      },
+    return StreamProvider<Username?>.value(
+      value: AuthService().user,
+      initialData: null,
+      child: const MaterialApp(
+        home: Wrapper(),
+      ),
     );
-  } //build
-}//MyApp
+  }
+}
