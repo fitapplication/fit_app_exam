@@ -11,6 +11,8 @@ class UserData {
   final String? weigth;
   final String? heigth;
   final String? nickname;
+  final String? userID;
+  final List? step;
 
   UserData(
       {this.uid,
@@ -19,5 +21,7 @@ class UserData {
       this.surname,
       this.heigth,
       this.weigth,
-      this.nickname});
+      this.nickname,
+      this.userID,
+      this.step});
 }

@@ -59,8 +59,15 @@ class AuthService {
       User? user = result.user;
 
       //create doc of user
-      await DatabaseService(uid: user!.uid).updateUserData('', '', '', '', '',
-          ''); //'$name', '$surname', $age, $weigth, $heigth, $nickname
+      await DatabaseService(uid: user!.uid).updateUserData(
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          []); //'$name', '$surname', $age, $weigth, $heigth, $nickname, $userfitbit
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

@@ -11,6 +11,7 @@ import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/constants.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -31,6 +32,8 @@ class _ProfileState extends State<Profile> {
   String? _currentHeigth;
   String? _currentWeigth;
   String? _currentNickname;
+  String? _currentUserID;
+  List? _currentStep;
 
   @override
   Widget build(BuildContext context) {
@@ -145,6 +148,8 @@ class _ProfileState extends State<Profile> {
                                         _currentWeigth ?? userData.weigth!,
                                         _currentHeigth ?? userData.heigth!,
                                         _currentNickname ?? userData.nickname!,
+                                        _currentUserID ?? userData.userID!,
+                                        _currentStep ?? userData.step!,
                                       );
                                     }
 
@@ -157,7 +162,6 @@ class _ProfileState extends State<Profile> {
                                   child: const Text('Fitbit Login',
                                       style: TextStyle(color: Colors.white)),
                                   onPressed: () async {
-                                    setState(() => loading = true);
                                     String? userId =
                                         await FitbitConnector.authorize(
                                             context: context,
@@ -168,19 +172,47 @@ class _ProfileState extends State<Profile> {
                                                 Strings.fitbitRedirectUri,
                                             callbackUrlScheme:
                                                 Strings.fitbitCallbackScheme);
-                                    if (userId != null) {
-                                      setState(() {
-                                        loading = false;
-                                        error =
-                                            'Could not sign in with those credentials';
-                                      });
-                                    }
+                                    _currentUserID = userId;
+                                    await FitbitConnector.storage
+                                        .read(key: 'fitbitAccessToken');
+                                    await FitbitConnector.storage
+                                        .read(key: 'fitbitRefreshToken');
 
-                                    if (userId == null) {
-                                      setState(() {
-                                        loading = false;
-                                      });
+                                    //Instantiate a proper data manager
+                                    FitbitActivityTimeseriesDataManager
+                                        fitbitActivityTimeseriesDataManager =
+                                        FitbitActivityTimeseriesDataManager(
+                                      clientID: Strings.fitbitClientID,
+                                      clientSecret: Strings.fitbitClientSecret,
+                                      type: 'steps',
+                                    );
+
+                                    //Fetch data
+                                    List? stepList;
+
+                                    for (var i = 0; i < 30; i++) {
+                                      final stepsData =
+                                          await fitbitActivityTimeseriesDataManager
+                                              .fetch(
+                                                  FitbitActivityTimeseriesAPIURL
+                                                      .dayWithResource(
+                                        date: DateTime.now()
+                                            .subtract(Duration(days: i)),
+                                        userID: userId,
+                                        resource:
+                                            fitbitActivityTimeseriesDataManager
+                                                .type,
+                                      )) as List<FitbitActivityTimeseriesData>;
+
+                                      var stepsinfo =
+                                          stepsData.toString().split(':');
+                                      String K = stepsinfo[6];
+                                      var stepday = K.split(',');
+
+                                      stepList![i] = stepday[0];
                                     }
+                                    _currentStep = stepList;
+                                    print(stepList);
                                   })
                             ],
                           ),

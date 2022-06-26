@@ -12,7 +12,7 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('petfit');
 
   Future updateUserData(String Name, String Surname, String Age, String Weigth,
-      String Heigth, String Nickname) async {
+      String Heigth, String Nickname, String userID, List step) async {
     return await petCollection.doc(uid).set({
       'Name': Name,
       'Surname': Surname,
@@ -20,6 +20,8 @@ class DatabaseService {
       'Weigth': Weigth,
       'Heigth': Heigth,
       'Nickname': Nickname,
+      'UserID': userID,
+      'ListStep': step,
     });
   }
 
@@ -33,7 +35,9 @@ class DatabaseService {
           age: doc.get('Age') ?? 0,
           weigth: doc.get('Weigth') ?? 0,
           heigth: doc.get('Heigth') ?? 0,
-          nickname: doc.get('Nickname') ?? '');
+          nickname: doc.get('Nickname') ?? '',
+          userID: doc.get('UserID') ?? '',
+          step: doc.get('ListStep') ?? []);
     }).toList();
   }
 
@@ -48,6 +52,8 @@ class DatabaseService {
       heigth: snapshot['Heigth'],
       weigth: snapshot['Weigth'],
       nickname: snapshot['Nickname'],
+      userID: snapshot['UserID'],
+      step: snapshot['ListStep'],
     );
   }
 
