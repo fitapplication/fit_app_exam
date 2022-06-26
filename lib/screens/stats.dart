@@ -58,37 +58,137 @@ class Graphs extends StatelessWidget {
           backgroundColor: Colors.lightBlue[200],
           centerTitle: true),
       body: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Column(children: <Widget>[
-            Expanded(
-              flex: 70,
-              child: Container(
-                padding: const EdgeInsets.only(top: 10.0, right: 8.0),
-                child: charts.BarChart(
-                  series,
-                  animate: true,
-                  animationDuration: const Duration(seconds: 1),
-                  behaviors: [
-                    charts.ChartTitle('Days',
-                        behaviorPosition: charts.BehaviorPosition.bottom,
-                        titleOutsideJustification:
-                            charts.OutsideJustification.middleDrawArea),
-                    charts.ChartTitle('Steps',
-                        behaviorPosition: charts.BehaviorPosition.start,
-                        titleOutsideJustification:
-                            charts.OutsideJustification.middleDrawArea),
-                  ],
+        height: ((MediaQuery.of(context).size.height) * 4) - 260,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 60.0,
+                  child: Text(
+                    'Steps',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-
-                // charts.ArcLabelDecorator(labelPosition: charts.ArcLabelPosition.outside),
-                // primaryMeasureAxis: const charts.NumericAxisSpec(
-                //     renderSpec: charts.GridlineRendererSpec()),
-                // domainAxis: const charts.OrdinalAxisSpec(
-                //     showAxisLine: true,
-                //     renderSpec: charts.NoneRenderSpec())
-              ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: (MediaQuery.of(context).size.height) - 110,
+                  child: charts.BarChart(
+                    series,
+                    animate: true,
+                    animationDuration: const Duration(seconds: 1),
+                    behaviors: [
+                      charts.ChartTitle('Days',
+                          behaviorPosition: charts.BehaviorPosition.bottom,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                      charts.ChartTitle('Steps counter',
+                          behaviorPosition: charts.BehaviorPosition.start,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 60.0,
+                  child: Text(
+                    'Sleep',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: (MediaQuery.of(context).size.height) - 110,
+                  child: charts.BarChart(
+                    series,
+                    animate: true,
+                    animationDuration: const Duration(seconds: 1),
+                    behaviors: [
+                      charts.ChartTitle('Days',
+                          behaviorPosition: charts.BehaviorPosition.bottom,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                      charts.ChartTitle('Sleep Hours',
+                          behaviorPosition: charts.BehaviorPosition.start,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 60.0,
+                  child: Text(
+                    'Calories',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: (MediaQuery.of(context).size.height) - 110,
+                  child: charts.BarChart(
+                    series,
+                    animate: true,
+                    animationDuration: const Duration(seconds: 1),
+                    behaviors: [
+                      charts.ChartTitle('Days',
+                          behaviorPosition: charts.BehaviorPosition.bottom,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                      charts.ChartTitle('Calories burnt',
+                          behaviorPosition: charts.BehaviorPosition.start,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 30.0,
+                  child: Text(
+                    'Work out',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: (MediaQuery.of(context).size.height) - 110,
+                  child: charts.BarChart(
+                    series,
+                    animate: true,
+                    animationDuration: const Duration(seconds: 1),
+                    behaviors: [
+                      charts.ChartTitle('Days',
+                          behaviorPosition: charts.BehaviorPosition.bottom,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                      charts.ChartTitle('Work out hours',
+                          behaviorPosition: charts.BehaviorPosition.start,
+                          titleOutsideJustification:
+                              charts.OutsideJustification.middleDrawArea),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ])),
+            // charts.ArcLabelDecorator(labelPosition: charts.ArcLabelPosition.outside),
+            // primaryMeasureAxis: const charts.NumericAxisSpec(
+            //     renderSpec: charts.GridlineRendererSpec()),
+            // domainAxis: const charts.OrdinalAxisSpec(
+            //     showAxisLine: true,
+            //     renderSpec: charts.NoneRenderSpec())
+          ),
+        ),
+      ),
+    );
 //               Expanded(
 //                   flex: 50,
 //                   child: Container(
@@ -106,7 +206,6 @@ class Graphs extends StatelessWidget {
 //                         Icon(Icons.ramen_dining_rounded,
 //                             color: Colors.indigo[900], size: 100.0),
 //                       ])))
-    );
   }
 }
 
