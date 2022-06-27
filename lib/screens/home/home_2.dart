@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_app_exam/models/pet.dart';
 import 'package:fit_app_exam/screens/home/profileedit.dart';
@@ -11,20 +11,20 @@ import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/user.dart';
 
-int algorithm(var sleepHours, var exerciceHours) {
+int algorithm(var sleepHours, var exerciceHours, var workoutHours) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
   int results = 0;
 
   if (sleepHours < 8) {
-    par1 = (sleepHours - 8) / 8;
+    par1 = (8 - sleepHours) / 8;
   }
   if (exerciceHours < 2) {
-    par2 = (exerciceHours - 2) / 2;
+    par2 = (2 - exerciceHours) / 2;
   }
   if (workoutHours < 0.8) {
-    par3 = (workoutHours - 0.8) / 0.8;
+    par3 = (0.8 - workoutHours) / 0.8;
   }
   if (par1 == par2 && par1 == par3) {
     results = 3;
@@ -34,6 +34,34 @@ int algorithm(var sleepHours, var exerciceHours) {
     results = 1;
   } else if (par1 < par3 && par2 < par3) {
     results = 4;
+  }
+
+  return results;
+}
+
+double algorithm_bar(var sleepHours, var exerciceHours, var workoutHours) {
+  double par2 = 0;
+  double par1 = 0;
+  double par3 = 0;
+  double results = 0;
+
+  if (sleepHours < 8) {
+    par1 = (8 - sleepHours) / 8;
+  }
+  if (exerciceHours < 2) {
+    par2 = (2 - exerciceHours) / 2;
+  }
+  if (workoutHours < 0.8) {
+    par3 = (0.8 - workoutHours) / 0.8;
+  }
+  if (par1 == par2 && par1 == par3) {
+    results = 0.0;
+  } else if (par2 < par1 && par3 < par1) {
+    results = par1;
+  } else if (par1 < par2 && par3 < par2) {
+    results = par2;
+  } else if (par1 < par3 && par2 < par3) {
+    results = par3;
   }
 
   return results;
@@ -76,7 +104,10 @@ class home_2 extends StatefulWidget {
 var sleepHours = Random().nextDouble() * 10;
 var exerciceHours = Random().nextDouble() * 4;
 var workoutHours = Random().nextDouble() * 1;
-int test = algorithm(sleepHours, exerciceHours);
+double percentageCompletion =
+    (1 - (algorithm_bar(sleepHours, exerciceHours, workoutHours))) * 100;
+
+int test = algorithm(sleepHours, exerciceHours, workoutHours);
 
 class _home_2State extends State<home_2> {
   final AuthService _auth = AuthService();
@@ -163,12 +194,14 @@ class _home_2State extends State<home_2> {
                             margin: const EdgeInsets.all(10.0),
                           )),
                       Expanded(
-                          flex: 50,
+                          flex: 40,
                           child: Container(
                               child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
+                                Icon(Icons.pets_outlined,
+                                    color: Colors.indigo[900], size: 50.0),
                                 Text(userData?.nickname ?? 'Nickname',
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
@@ -177,8 +210,24 @@ class _home_2State extends State<home_2> {
                                 Text(checktext(test),
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(fontSize: 30)),
-                                Icon(Icons.ramen_dining_rounded,
-                                    color: Colors.indigo[900], size: 100.0),
+                                LinearPercentIndicator(
+                                  lineHeight: 40.0,
+                                  alignment: MainAxisAlignment.center,
+                                  width: MediaQuery.of(context).size.width - 20,
+                                  animation: true,
+                                  animationDuration: 1200,
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  percent: (1 -
+                                      (algorithm_bar(sleepHours, exerciceHours,
+                                          workoutHours))),
+                                  progressColor: Colors.red,
+                                  backgroundColor: Colors.green,
+                                  center: Text(
+                                    'You have completed ${double.parse(percentageCompletion.toStringAsFixed(2))}% of your daily goal',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  barRadius: const Radius.circular(15),
+                                )
                               ])))
                     ]));
               } else {
