@@ -1,3 +1,4 @@
+import 'package:fit_app_exam/screens/home/home_2.dart';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -162,6 +163,9 @@ class _ProfileState extends State<Profile> {
                                   child: const Text('Fitbit Login',
                                       style: TextStyle(color: Colors.white)),
                                   onPressed: () async {
+                                    setState(() {
+                                      loading = true;
+                                    });
                                     String? userId =
                                         await FitbitConnector.authorize(
                                             context: context,
@@ -188,10 +192,12 @@ class _ProfileState extends State<Profile> {
                                     );
 
                                     //Fetch data
-                                    List? stepList;
+                                    String? test;
 
+                                    List<FitbitActivityTimeseriesData>?
+                                        stepData;
                                     for (var i = 0; i < 30; i++) {
-                                      final stepsData =
+                                      stepData =
                                           await fitbitActivityTimeseriesDataManager
                                               .fetch(
                                                   FitbitActivityTimeseriesAPIURL
@@ -203,16 +209,20 @@ class _ProfileState extends State<Profile> {
                                             fitbitActivityTimeseriesDataManager
                                                 .type,
                                       )) as List<FitbitActivityTimeseriesData>;
-
+                                      print(stepData);
                                       var stepsinfo =
-                                          stepsData.toString().split(':');
-                                      String K = stepsinfo[6];
+                                          stepData.toString().split(': ');
+                                      String K =
+                                          stepsinfo[stepsinfo.length - 1];
                                       var stepday = K.split(',');
+                                      print(stepday[0]);
 
-                                      stepList![i] = stepday[0];
+                                      test = '$test,${stepday[0]}';
                                     }
-                                    _currentStep = stepList;
-                                    print(stepList);
+
+                                    print(test);
+
+                                    _currentStep = test.toString().split(',');
                                   })
                             ],
                           ),
