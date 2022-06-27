@@ -141,6 +141,9 @@ class _ProfileState extends State<Profile> {
                                       style: TextStyle(color: Colors.white)),
                                   onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
+                                      setState(() {
+                                        loading = true;
+                                      });
                                       await DatabaseService(uid: user.uid)
                                           .updateUserData(
                                         _currentName ?? userData.name!,
@@ -153,8 +156,9 @@ class _ProfileState extends State<Profile> {
                                         _currentStep ?? userData.step!,
                                       );
                                     }
-
-                                    Navigator.pop(context);
+                                    setState(() {
+                                      loading = false;
+                                    });
                                   }),
 
                               //register fitbit
@@ -192,12 +196,11 @@ class _ProfileState extends State<Profile> {
                                     );
 
                                     //Fetch data
-                                    String? test;
+                                    List<String> stepvalue = [];
 
-                                    List<FitbitActivityTimeseriesData>?
-                                        stepData;
                                     for (var i = 0; i < 30; i++) {
-                                      stepData =
+                                      List<FitbitActivityTimeseriesData>?
+                                          stepData =
                                           await fitbitActivityTimeseriesDataManager
                                               .fetch(
                                                   FitbitActivityTimeseriesAPIURL
@@ -209,20 +212,23 @@ class _ProfileState extends State<Profile> {
                                             fitbitActivityTimeseriesDataManager
                                                 .type,
                                       )) as List<FitbitActivityTimeseriesData>;
-                                      print(stepData);
+                                      //print(stepData);
                                       var stepsinfo =
                                           stepData.toString().split(': ');
                                       String K =
                                           stepsinfo[stepsinfo.length - 1];
                                       var stepday = K.split(',');
-                                      print(stepday[0]);
+                                      //print(stepday[0]);
 
-                                      test = '$test,${stepday[0]}';
+                                      stepvalue.add(stepday[0]);
                                     }
 
-                                    print(test);
+                                    //print(test);
+                                    setState(() {
+                                      loading = false;
+                                    });
 
-                                    _currentStep = test.toString().split(',');
+                                    _currentStep = stepvalue;
                                   })
                             ],
                           ),
