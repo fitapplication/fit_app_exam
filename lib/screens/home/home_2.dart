@@ -14,6 +14,7 @@ import 'package:fit_app_exam/models/user.dart';
 int algorithm(var sleepHours, var exerciceHours) {
   double par2 = 0;
   double par1 = 0;
+  double par3 = 0;
   int results = 0;
 
   if (sleepHours < 8) {
@@ -22,12 +23,17 @@ int algorithm(var sleepHours, var exerciceHours) {
   if (exerciceHours < 2) {
     par2 = (exerciceHours - 2) / 2;
   }
-  if (par1 == par2) {
+  if (workoutHours < 0.8) {
+    par3 = (workoutHours - 0.8) / 0.8;
+  }
+  if (par1 == par2 && par1 == par3) {
     results = 3;
-  } else if (par2 < par1) {
+  } else if (par2 < par1 && par3 < par1) {
     results = 2;
-  } else if (par1 < par2) {
+  } else if (par1 < par2 && par3 < par2) {
     results = 1;
+  } else if (par1 < par3 && par2 < par3) {
+    results = 4;
   }
 
   return results;
@@ -42,6 +48,8 @@ String check(int test) {
     imagecheck = "https://c.tenor.com/MVwqWHzPXNwAAAAC/pusheen-goodnight.gif";
   } else if (test == 3) {
     imagecheck = 'https://c.tenor.com/sJnOE_eYvFcAAAAC/pusheen.gif';
+  } else if (test == 4) {
+    imagecheck = 'https://c.tenor.com/qnS4hoUXnQMAAAAC/pusheen.gif';
   }
   return imagecheck;
 }
@@ -49,11 +57,13 @@ String check(int test) {
 String checktext(int test) {
   String textcheck = '';
   if (test == 1) {
-    textcheck = 'Your pet needs more execise!';
+    textcheck = 'Your pet needs less calories!';
   } else if (test == 2) {
     textcheck = 'Your pet needs more sleep!';
   } else if (test == 3) {
     textcheck = 'Your pet is perfectly healty!';
+  } else if (test == 4) {
+    textcheck = 'Your pet needs to work out!';
   }
   return textcheck;
 }
@@ -65,6 +75,7 @@ class home_2 extends StatefulWidget {
 
 var sleepHours = Random().nextDouble() * 10;
 var exerciceHours = Random().nextDouble() * 4;
+var workoutHours = Random().nextDouble() * 1;
 int test = algorithm(sleepHours, exerciceHours);
 
 class _home_2State extends State<home_2> {
@@ -107,7 +118,7 @@ class _home_2State extends State<home_2> {
           child: Row(
             children: [
               IconButton(
-                icon: Icon(Icons.person),
+                icon: const Icon(Icons.person),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Profile()));
@@ -116,7 +127,7 @@ class _home_2State extends State<home_2> {
               ),
               const Spacer(),
               IconButton(
-                icon: Icon(Icons.stacked_bar_chart),
+                icon: const Icon(Icons.stacked_bar_chart),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Graphs()));
@@ -160,12 +171,12 @@ class _home_2State extends State<home_2> {
                                   children: <Widget>[
                                 Text(userData?.nickname ?? 'Nickname',
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 40)),
                                 Text(checktext(test),
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(fontSize: 30)),
+                                    style: const TextStyle(fontSize: 30)),
                                 Icon(Icons.ramen_dining_rounded,
                                     color: Colors.indigo[900], size: 100.0),
                               ])))
