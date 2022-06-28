@@ -2,19 +2,59 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:fit_app_exam/screens/strings.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:fit_app_exam/services/auth.dart';
+import 'package:fit_app_exam/services/database.dart';
+import 'package:fit_app_exam/shared/constants.dart';
+import 'package:fit_app_exam/shared/loading.dart';
+import 'package:provider/provider.dart';
+import 'package:fit_app_exam/models/user.dart';
 
-var sleepHours = Random().nextDouble() * 10;
-var exerciceHours = Random().nextDouble() * 4;
-int stepsCount = Random().nextInt(20000);
-int caloriesBurnt = Random().nextInt(3500);
+class Graphs extends StatefulWidget {
+  const Graphs({Key? key}) : super(key: key);
+  @override
+  State<Graphs> createState() => Fetch();
+}
+
+// var sleepHours = Random().nextDouble() * 10;
+// var exerciceHours = Random().nextDouble() * 4;
+// int stepsCount = Random().nextInt(20000);
+// int caloriesBurnt = Random().nextInt(3500);
 
 // class Graphs extends StatefulWidget {
 //   @override
 //   State<Graphs> createState() => Dynamic();
 // }
 
-class Graphs extends StatelessWidget {
-  final List<BarChartModel> data = [
+class Fetch extends State<Graphs> {
+  final List<BarChartModel> data_steps = [
+    BarChartModel('1', Random().nextInt(20000), Colors.blue),
+    BarChartModel('2', Random().nextInt(20000), Colors.red),
+    BarChartModel('3', Random().nextInt(20000), Colors.yellow),
+    BarChartModel('4', Random().nextInt(20000), Colors.brown),
+    BarChartModel('5', Random().nextInt(20000), Colors.indigo),
+    BarChartModel('6', Random().nextInt(20000), Colors.purple),
+    BarChartModel('7', Random().nextInt(20000), Colors.orange),
+  ];
+
+  final List<BarChartModel> data_sleep = [
+    BarChartModel('1', Random().nextInt(20000), Colors.blue),
+    BarChartModel('2', Random().nextInt(20000), Colors.red),
+    BarChartModel('3', Random().nextInt(20000), Colors.yellow),
+    BarChartModel('4', Random().nextInt(20000), Colors.brown),
+    BarChartModel('5', Random().nextInt(20000), Colors.indigo),
+    BarChartModel('6', Random().nextInt(20000), Colors.purple),
+    BarChartModel('7', Random().nextInt(20000), Colors.orange),
+  ];
+  final List<BarChartModel> data_calories = [
+    BarChartModel('1', Random().nextInt(20000), Colors.blue),
+    BarChartModel('2', Random().nextInt(20000), Colors.red),
+    BarChartModel('3', Random().nextInt(20000), Colors.yellow),
+    BarChartModel('4', Random().nextInt(20000), Colors.brown),
+    BarChartModel('5', Random().nextInt(20000), Colors.indigo),
+    BarChartModel('6', Random().nextInt(20000), Colors.purple),
+    BarChartModel('7', Random().nextInt(20000), Colors.orange),
+  ];
+  final List<BarChartModel> data_workout = [
     BarChartModel('1', Random().nextInt(20000), Colors.blue),
     BarChartModel('2', Random().nextInt(20000), Colors.red),
     BarChartModel('3', Random().nextInt(20000), Colors.yellow),
@@ -42,15 +82,48 @@ class Graphs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<charts.Series<BarChartModel, String>> series = [
+    // final AuthService _auth = AuthService();
+    // final user = Provider.of<Username>(context);
+    // List? _currentStep;
+    List<charts.Series<BarChartModel, String>> series_steps = [
       charts.Series(
         id: "Steps",
-        data: data,
+        data: data_steps,
         domainFn: (BarChartModel series, _) => series.task,
         measureFn: (BarChartModel series, _) => series.value,
         colorFn: (BarChartModel series, _) =>
             charts.ColorUtil.fromDartColor(series.colorVal),
-      )
+      ),
+    ];
+    List<charts.Series<BarChartModel, String>> series_sleep = [
+      charts.Series(
+        id: "Sleep",
+        data: data_sleep,
+        domainFn: (BarChartModel series, _) => series.task,
+        measureFn: (BarChartModel series, _) => series.value,
+        colorFn: (BarChartModel series, _) =>
+            charts.ColorUtil.fromDartColor(series.colorVal),
+      ),
+    ];
+    List<charts.Series<BarChartModel, String>> series_calories = [
+      charts.Series(
+        id: "Calories",
+        data: data_calories,
+        domainFn: (BarChartModel series, _) => series.task,
+        measureFn: (BarChartModel series, _) => series.value,
+        colorFn: (BarChartModel series, _) =>
+            charts.ColorUtil.fromDartColor(series.colorVal),
+      ),
+    ];
+    List<charts.Series<BarChartModel, String>> series_workout = [
+      charts.Series(
+        id: "Work out",
+        data: data_workout,
+        domainFn: (BarChartModel series, _) => series.task,
+        measureFn: (BarChartModel series, _) => series.value,
+        colorFn: (BarChartModel series, _) =>
+            charts.ColorUtil.fromDartColor(series.colorVal),
+      ),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -58,13 +131,18 @@ class Graphs extends StatelessWidget {
           backgroundColor: Colors.lightBlue[200],
           centerTitle: true),
       body: Container(
-        height: ((MediaQuery.of(context).size.height) * 4) - 260,
+        height: ((MediaQuery.of(context).size.height) * 3) +
+            10 -
+            ((MediaQuery.of(context).size.height) * 0.80),
         width: MediaQuery.of(context).size.width,
         child: Center(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: <Widget>[
+                const SizedBox(
+                  height: 10.0,
+                ),
                 const SizedBox(
                   height: 60.0,
                   child: Text(
@@ -76,9 +154,10 @@ class Graphs extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - 110,
+                  height: (MediaQuery.of(context).size.height) -
+                      ((MediaQuery.of(context).size.height) * 0.20),
                   child: charts.BarChart(
-                    series,
+                    series_steps,
                     animate: true,
                     animationDuration: const Duration(seconds: 1),
                     behaviors: [
@@ -104,9 +183,10 @@ class Graphs extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - 110,
+                  height: (MediaQuery.of(context).size.height) -
+                      ((MediaQuery.of(context).size.height) * 0.20),
                   child: charts.BarChart(
-                    series,
+                    series_sleep,
                     animate: true,
                     animationDuration: const Duration(seconds: 1),
                     behaviors: [
@@ -132,9 +212,10 @@ class Graphs extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - 110,
+                  height: (MediaQuery.of(context).size.height) -
+                      ((MediaQuery.of(context).size.height) * 0.20),
                   child: charts.BarChart(
-                    series,
+                    series_calories,
                     animate: true,
                     animationDuration: const Duration(seconds: 1),
                     behaviors: [
@@ -160,9 +241,10 @@ class Graphs extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - 110,
+                  height: (MediaQuery.of(context).size.height) -
+                      ((MediaQuery.of(context).size.height) * 0.20),
                   child: charts.BarChart(
-                    series,
+                    series_workout,
                     animate: true,
                     animationDuration: const Duration(seconds: 1),
                     behaviors: [
