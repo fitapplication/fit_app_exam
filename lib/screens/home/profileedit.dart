@@ -196,7 +196,7 @@ class _ProfileState extends State<Profile> {
                                       //Fetch data
                                       List<String> stepvalue = [];
 
-                                      for (var i = 0; i < 30; i++) {
+                                      for (var i = 0; i < 7; i++) {
                                         List<FitbitActivityTimeseriesData>?
                                             stepData =
                                             await fitbitActivityTimeseriesDataManager
