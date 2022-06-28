@@ -197,7 +197,15 @@ class _ProfileState extends State<Profile> {
 
                                       //Instantiate a proper data manager
                                       FitbitActivityTimeseriesDataManager
-                                          fitbitActivityTimeseriesDataManager =
+                                          fitbitActivityTimeseriesDataManagerSteps =
+                                          FitbitActivityTimeseriesDataManager(
+                                        clientID: Strings.fitbitClientID,
+                                        clientSecret:
+                                            Strings.fitbitClientSecret,
+                                        type: 'steps',
+                                      );
+                                      FitbitActivityTimeseriesDataManager
+                                          fitbitActivityTimeseriesDataManagerCalories =
                                           FitbitActivityTimeseriesDataManager(
                                         clientID: Strings.fitbitClientID,
                                         clientSecret:
@@ -207,11 +215,11 @@ class _ProfileState extends State<Profile> {
 
                                       //Fetch data
                                       List<String> stepvalue = [];
-
+                                      List<String> caloriesvalue = [];
                                       for (var i = 0; i < 7; i++) {
                                         List<FitbitActivityTimeseriesData>?
                                             stepData =
-                                            await fitbitActivityTimeseriesDataManager
+                                            await fitbitActivityTimeseriesDataManagerSteps
                                                 .fetch(
                                                     FitbitActivityTimeseriesAPIURL
                                                         .dayWithResource(
@@ -219,7 +227,7 @@ class _ProfileState extends State<Profile> {
                                               .subtract(Duration(days: i)),
                                           userID: userId,
                                           resource:
-                                              fitbitActivityTimeseriesDataManager
+                                              fitbitActivityTimeseriesDataManagerSteps
                                                   .type,
                                         )) as List<
                                                 FitbitActivityTimeseriesData>;
@@ -232,6 +240,30 @@ class _ProfileState extends State<Profile> {
                                         //print(stepday[0]);
 
                                         stepvalue.add(stepday[0]);
+
+                                        List<FitbitActivityTimeseriesData>?
+                                            caloriesData =
+                                            await fitbitActivityTimeseriesDataManagerCalories
+                                                .fetch(
+                                                    FitbitActivityTimeseriesAPIURL
+                                                        .dayWithResource(
+                                          date: DateTime.now()
+                                              .subtract(Duration(days: i)),
+                                          userID: userId,
+                                          resource:
+                                              fitbitActivityTimeseriesDataManagerCalories
+                                                  .type,
+                                        )) as List<
+                                                FitbitActivityTimeseriesData>;
+                                        //print(stepData);
+                                        var caloriesinfo =
+                                            caloriesData.toString().split(': ');
+                                        String F = caloriesinfo[
+                                            caloriesinfo.length - 1];
+                                        var caloriesday = F.split(',');
+                                        //print(stepday[0]);
+
+                                        caloriesvalue.add(caloriesday[0]);
                                       }
 
                                       //print(test);
@@ -240,6 +272,7 @@ class _ProfileState extends State<Profile> {
                                       });
 
                                       _currentStep = stepvalue;
+                                      _currentCalories = caloriesvalue;
                                     })
                               ],
                             ),
