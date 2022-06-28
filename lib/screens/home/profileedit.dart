@@ -192,7 +192,7 @@ class _ProfileState extends State<Profile> {
                                         FitbitActivityTimeseriesDataManager(
                                       clientID: Strings.fitbitClientID,
                                       clientSecret: Strings.fitbitClientSecret,
-                                      type: 'steps',
+                                      type: 'calories',
                                     );
 
                                     //Fetch data
