@@ -105,6 +105,7 @@ class Fetch extends State<Graphs> {
             charts.ColorUtil.fromDartColor(series.colorVal),
       ),
     ];
+
     List<charts.Series<BarChartModel, String>> series_calories = [
       charts.Series(
         id: "Calories",

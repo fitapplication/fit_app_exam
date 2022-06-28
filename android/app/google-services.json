@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1006272933347",
-    "project_id": "appuni-95dd7",
-    "storage_bucket": "appuni-95dd7.appspot.com"
+    "project_number": "726205715451",
+    "project_id": "unipdapp",
+    "storage_bucket": "unipdapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1006272933347:android:c9fdbb81abea420b0004d6",
+        "mobilesdk_app_id": "1:726205715451:android:f8f3c0efc91724f96f715e",
         "android_client_info": {
           "package_name": "com.example.loginfede"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1006272933347-3mfme49k2qqem5dfm4h90jhqit4ei9ep.apps.googleusercontent.com",
+          "client_id": "726205715451-snilc0to1jn8meg0gd98flfats8v4c4k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJuX3pFmQ8T7ylRk3Czxx85r1UPMpYPkc"
+          "current_key": "AIzaSyDKZT1hRdpCJkWRxJmDyo5kEfNAOZ42NVY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1006272933347-3mfme49k2qqem5dfm4h90jhqit4ei9ep.apps.googleusercontent.com",
+              "client_id": "726205715451-snilc0to1jn8meg0gd98flfats8v4c4k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
