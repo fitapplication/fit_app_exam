@@ -129,7 +129,7 @@ class _home_2State extends State<home_2> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('PetFit'),
-          backgroundColor: Color(0XFFd08657),
+          backgroundColor: Color(0XFF1e81b0),
           elevation: 0.0,
           actions: <Widget>[
             FlatButton.icon(
@@ -185,7 +185,7 @@ class _home_2State extends State<home_2> {
                                   image: NetworkImage(check(test)),
                                   fit: BoxFit.cover),
                               border: Border.all(
-                                color: const Color(0XFFf5cdb4),
+                                color: const Color(0XFFabdbe3),
                                 width: 8,
                               ),
                               borderRadius: BorderRadius.circular(25),
@@ -220,8 +220,8 @@ class _home_2State extends State<home_2> {
                                   percent: (1 -
                                       (algorithm_bar(sleepHours, exerciceHours,
                                           workoutHours))),
-                                  progressColor: Color(0XFFd08657),
-                                  backgroundColor: Color(0XFFf5cdb4),
+                                  progressColor: Color(0XFF1e81b0),
+                                  backgroundColor: Color(0XFFabdbe3),
                                   center: Text(
                                     'You have completed ${double.parse(percentageCompletion.toStringAsFixed(2))}% of your daily goal',
                                     textAlign: TextAlign.center,

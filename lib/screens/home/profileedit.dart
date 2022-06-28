@@ -1,18 +1,12 @@
-import 'package:fit_app_exam/screens/home/home_2.dart';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fit_app_exam/models/pet.dart';
 import 'package:fit_app_exam/models/user.dart';
-import 'package:fit_app_exam/screens/home/pet_list.dart';
-import 'package:fit_app_exam/screens/home/setting_form.dart';
 import 'package:fit_app_exam/screens/strings.dart';
 import 'package:fit_app_exam/services/auth.dart';
 import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/constants.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -45,7 +39,7 @@ class _ProfileState extends State<Profile> {
             backgroundColor: Colors.white,
             appBar: AppBar(
               title: const Text('PetFit'),
-              backgroundColor: Colors.blue[400],
+              backgroundColor: Color(0XFF1e665b),
               elevation: 0.0,
               actions: <Widget>[
                 FlatButton.icon(
@@ -64,7 +58,8 @@ class _ProfileState extends State<Profile> {
                     UserData? userData = snapshot.data;
                     return Form(
                       key: _formKey,
-                      child: Column(
+                      child: SingleChildScrollView(
+                          child: Column(
                         children: <Widget>[
                           const SizedBox(height: 20),
                           const Text(
@@ -137,7 +132,7 @@ class _ProfileState extends State<Profile> {
                             child: Column(
                               children: [
                                 RaisedButton(
-                                    color: Colors.pink,
+                                    color: Color(0XFF1e665b),
                                     child: const Text('Update',
                                         style: TextStyle(color: Colors.white)),
                                     onPressed: () async {
@@ -165,7 +160,7 @@ class _ProfileState extends State<Profile> {
 
                                 //register fitbit
                                 RaisedButton(
-                                    color: Colors.pink,
+                                    color: Color(0XFF1e665b),
                                     child: const Text('Fitbit Login',
                                         style: TextStyle(color: Colors.white)),
                                     onPressed: () async {
@@ -238,7 +233,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           )
                         ],
-                      ),
+                      )),
                     );
                   } else {
                     return Loading();
