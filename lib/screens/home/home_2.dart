@@ -10,7 +10,7 @@ import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/user.dart';
 
-int algorithm(var sleepHours, var exerciceHours, var workoutHours, var steps) {
+int algorithm(var sleepHours, var calories, var workoutHours, var steps) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
@@ -20,8 +20,8 @@ int algorithm(var sleepHours, var exerciceHours, var workoutHours, var steps) {
   if (sleepHours < 8) {
     par1 = (8 - sleepHours) / 8;
   }
-  if (exerciceHours < 2) {
-    par2 = (2 - exerciceHours) / 2;
+  if (calories < 2) {
+    par2 = (2 - calories) / 2;
   }
   if (workoutHours < 0.8) {
     par3 = (0.8 - workoutHours) / 0.8;
@@ -29,23 +29,23 @@ int algorithm(var sleepHours, var exerciceHours, var workoutHours, var steps) {
   if (steps < 20000) {
     par4 = (20000 - steps) / 20000;
   }
-  if (par1 == par2 && par1 == par3 && par1 == par4) {
-    results = 3;
+  if (par1 < par2 && par3 < par2 && par4 < par2) {
+    results = 1;
   } else if (par2 < par1 && par3 < par1 && par4 < par1) {
     results = 2;
-  } else if (par1 < par2 && par3 < par2 && par4 < par2) {
-    results = 1;
-  } else if (par1 < par3 && par2 < par3 && par4 < par3) {
-    results = 4;
-  } else if (par1 < par4 && par2 < par4 && par3 < par4) {
+  } else if (par1 == par2 && par1 == par3 && par1 == par4) {
     results = 5;
+  } else if (par1 < par3 && par2 < par3 && par4 < par3) {
+    results = 3;
+  } else if (par1 < par4 && par2 < par4 && par3 < par4) {
+    results = 4;
   }
 
   return results;
 }
 
 double algorithm_bar(
-    var sleepHours, var exerciceHours, var workoutHours, var steps) {
+    var sleepHours, var calories, var workoutHours, var steps) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
@@ -55,8 +55,8 @@ double algorithm_bar(
   if (sleepHours < 8) {
     par1 = (8 - sleepHours) / 8;
   }
-  if (exerciceHours < 2) {
-    par2 = (2 - exerciceHours) / 2;
+  if (calories < 2) {
+    par2 = (2 - calories) / 2;
   }
   if (workoutHours < 0.8) {
     par3 = (0.8 - workoutHours) / 0.8;
@@ -85,11 +85,11 @@ String check(int test) {
     imagecheck = "https://c.tenor.com/OTiUFg5Z2coAAAAC/pusheen-play.gif";
   } else if (test == 2) {
     imagecheck = "https://c.tenor.com/MVwqWHzPXNwAAAAC/pusheen-goodnight.gif";
-  } else if (test == 3) {
+  } else if (test == 5) {
     imagecheck = 'https://c.tenor.com/sJnOE_eYvFcAAAAC/pusheen.gif';
   } else if (test == 4) {
     imagecheck = 'https://c.tenor.com/qnS4hoUXnQMAAAAC/pusheen.gif';
-  } else if (test == 5) {
+  } else if (test == 3) {
     imagecheck = 'https://c.tenor.com/Un0M4DWvCccAAAAC/pusheen-snacking.gif';
   }
   return imagecheck;
@@ -101,11 +101,11 @@ String checktext(int test) {
     textcheck = 'Your pet needs less calories!';
   } else if (test == 2) {
     textcheck = 'Your pet needs more sleep!';
-  } else if (test == 3) {
+  } else if (test == 5) {
     textcheck = 'Your pet is perfectly healty!';
   } else if (test == 4) {
     textcheck = 'Your pet needs to walk more!';
-  } else if (test == 5) {
+  } else if (test == 3) {
     textcheck = 'Your pet needs to work out!';
   }
   return textcheck;
@@ -116,14 +116,10 @@ class home_2 extends StatefulWidget {
   State<home_2> createState() => _home_2State();
 }
 
-var sleepHours = Random().nextDouble() * 10;
-var exerciceHours = Random().nextDouble() * 4;
-var workoutHours = Random().nextDouble() * 1;
-var steps = Random().nextDouble() * 30000;
-double percentageCompletion =
-    (1 - (algorithm_bar(sleepHours, exerciceHours, workoutHours, steps))) * 100;
-
-int test = algorithm(sleepHours, exerciceHours, workoutHours, steps);
+// var sleepHours = Random().nextDouble() * 10;
+// var calories = Random().nextDouble() * 4;
+// var workoutHours = Random().nextDouble() * 1;
+// var steps = Random().nextDouble() * 30000;
 
 class _home_2State extends State<home_2> {
   final AuthService _auth = AuthService();
@@ -189,6 +185,30 @@ class _home_2State extends State<home_2> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 UserData? userData = snapshot.data;
+                var first_time = userData?.nickname;
+
+                if (first_time == '') {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Profile()));
+                }
+                var sleepHours = userData?.step;
+                var calories = userData?.step;
+                var workoutHours = userData?.step;
+                var steps = userData?.step;
+
+                double percentageCompletion = (1 -
+                        (algorithm_bar(
+                            double.parse(sleepHours?[0]),
+                            double.parse(calories?[0]),
+                            double.parse(workoutHours?[0]),
+                            double.parse(steps?[0])))) *
+                    100;
+
+                int test = algorithm(
+                    double.parse(sleepHours?[0]),
+                    double.parse(calories?[0]),
+                    double.parse(workoutHours?[0]),
+                    double.parse(steps?[0]));
                 return Container(
                     height: MediaQuery.of(context).size.height,
                     child: Column(children: <Widget>[
@@ -234,8 +254,11 @@ class _home_2State extends State<home_2> {
                                   animationDuration: 1200,
                                   padding: const EdgeInsets.only(top: 10.0),
                                   percent: (1 -
-                                      (algorithm_bar(sleepHours, exerciceHours,
-                                          workoutHours, steps))),
+                                      (algorithm_bar(
+                                          double.parse(sleepHours?[0]),
+                                          double.parse(calories?[0]),
+                                          double.parse(workoutHours?[0]),
+                                          double.parse(steps?[0])))),
                                   progressColor: Color(0XFF1e81b0),
                                   backgroundColor: Color(0XFFabdbe3),
                                   center: Text(
