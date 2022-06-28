@@ -60,69 +60,74 @@ class Fetch extends State<Graphs> {
                 var step_list_7 = userData?.step;
 
                 var sleep_list_7 = userData?.step;
+
                 var calories_list_7 = userData?.step;
+
                 var workout_list_7 = userData?.step;
+
                 final List<BarChartModel> data_steps = [
                   BarChartModel(
-                      '1', double.parse(step_list_7?[29]), Colors.blue),
+                      '1', double.parse(step_list_7?[6]), Colors.blue),
+                  BarChartModel('2', double.parse(step_list_7?[5]), Colors.red),
                   BarChartModel(
-                      '2', double.parse(step_list_7?[28]), Colors.red),
+                      '3', double.parse(step_list_7?[4]), Colors.yellow),
                   BarChartModel(
-                      '3', double.parse(step_list_7?[27]), Colors.yellow),
+                      '4', double.parse(step_list_7?[3]), Colors.brown),
                   BarChartModel(
-                      '4', double.parse(step_list_7?[26]), Colors.brown),
+                      '5', double.parse(step_list_7?[2]), Colors.indigo),
                   BarChartModel(
-                      '5', double.parse(step_list_7?[25]), Colors.indigo),
+                      '6', double.parse(step_list_7?[1]), Colors.purple),
                   BarChartModel(
-                      '6', double.parse(step_list_7?[24]), Colors.purple),
-                  BarChartModel(
-                      '7', double.parse(step_list_7?[23]), Colors.orange),
+                      '7', double.parse(step_list_7?[0]), Colors.orange),
                 ];
 
                 final List<BarChartModel> data_sleep = [
                   BarChartModel(
-                      '1', double.parse(step_list_7?[1]), Colors.blue),
-                  BarChartModel('2', double.parse(step_list_7?[1]), Colors.red),
+                      '1', double.parse(sleep_list_7?[6]), Colors.blue),
                   BarChartModel(
-                      '3', double.parse(step_list_7?[1]), Colors.yellow),
+                      '2', double.parse(sleep_list_7?[5]), Colors.red),
                   BarChartModel(
-                      '4', double.parse(step_list_7?[1]), Colors.brown),
+                      '3', double.parse(sleep_list_7?[4]), Colors.yellow),
                   BarChartModel(
-                      '5', double.parse(step_list_7?[1]), Colors.indigo),
+                      '4', double.parse(sleep_list_7?[3]), Colors.brown),
                   BarChartModel(
-                      '6', double.parse(step_list_7?[1]), Colors.purple),
+                      '5', double.parse(sleep_list_7?[2]), Colors.indigo),
                   BarChartModel(
-                      '7', double.parse(step_list_7?[1]), Colors.orange),
+                      '6', double.parse(sleep_list_7?[1]), Colors.purple),
+                  BarChartModel(
+                      '7', double.parse(sleep_list_7?[0]), Colors.orange),
                 ];
                 final List<BarChartModel> data_calories = [
                   BarChartModel(
-                      '1', double.parse(step_list_7?[1]), Colors.blue),
-                  BarChartModel('2', double.parse(step_list_7?[1]), Colors.red),
+                      '1', double.parse(calories_list_7?[6]), Colors.blue),
                   BarChartModel(
-                      '3', double.parse(step_list_7?[1]), Colors.yellow),
+                      '2', double.parse(calories_list_7?[5]), Colors.red),
                   BarChartModel(
-                      '4', double.parse(step_list_7?[1]), Colors.brown),
+                      '3', double.parse(calories_list_7?[4]), Colors.yellow),
                   BarChartModel(
-                      '5', double.parse(step_list_7?[1]), Colors.indigo),
+                      '4', double.parse(calories_list_7?[3]), Colors.brown),
                   BarChartModel(
-                      '6', double.parse(step_list_7?[1]), Colors.purple),
+                      '5', double.parse(calories_list_7?[2]), Colors.indigo),
                   BarChartModel(
-                      '7', double.parse(step_list_7?[1]), Colors.orange),
+                      '6', double.parse(calories_list_7?[1]), Colors.purple),
+                  BarChartModel(
+                      '7', double.parse(calories_list_7?[0]), Colors.orange),
                 ];
                 final List<BarChartModel> data_workout = [
                   BarChartModel(
-                      '1', double.parse(step_list_7?[1]), Colors.blue),
-                  BarChartModel('2', double.parse(step_list_7?[1]), Colors.red),
+                      '1', double.parse(workout_list_7?[6]), Colors.blue),
                   BarChartModel(
-                      '3', double.parse(step_list_7?[1]), Colors.yellow),
+                      '2', double.parse(workout_list_7?[5]), Colors.red),
                   BarChartModel(
-                      '4', double.parse(step_list_7?[1]), Colors.brown),
+                      '3', double.parse(workout_list_7?[4]), Colors.yellow),
                   BarChartModel(
-                      '5', double.parse(step_list_7?[1]), Colors.indigo),
+                      '4', double.parse(workout_list_7?[3]), Colors.brown),
                   BarChartModel(
-                      '6', double.parse(step_list_7?[1]), Colors.purple),
+                      '5', double.parse(workout_list_7?[2]), Colors.indigo),
                   BarChartModel(
-                      '7', double.parse(step_list_7?[1]), Colors.orange),
+                      '6', double.parse(workout_list_7?[1]), Colors.purple),
+                  BarChartModel(
+                      '7', double.parse(workout_list_7?[0]), Colors.orange),
                 ];
                 // List? _currentStep;
                 List<charts.Series<BarChartModel, String>> series_steps = [
