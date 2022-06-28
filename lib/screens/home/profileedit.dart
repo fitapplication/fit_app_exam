@@ -133,105 +133,110 @@ class _ProfileState extends State<Profile> {
                                 setState(() => _currentWeigth = val),
                           ),
                           const SizedBox(height: 20),
-                          Row(
-                            children: [
-                              RaisedButton(
-                                  color: Colors.pink,
-                                  child: const Text('Update',
-                                      style: TextStyle(color: Colors.white)),
-                                  onPressed: () async {
-                                    if (_formKey.currentState!.validate()) {
+                          Center(
+                            child: Column(
+                              children: [
+                                RaisedButton(
+                                    color: Colors.pink,
+                                    child: const Text('Update',
+                                        style: TextStyle(color: Colors.white)),
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        setState(() {
+                                          loading = true;
+                                        });
+                                        await DatabaseService(uid: user.uid)
+                                            .updateUserData(
+                                          _currentName ?? userData.name!,
+                                          _currentSurname ?? userData.surname!,
+                                          _currentAge ?? userData.age!,
+                                          _currentWeigth ?? userData.weigth!,
+                                          _currentHeigth ?? userData.heigth!,
+                                          _currentNickname ??
+                                              userData.nickname!,
+                                          _currentUserID ?? userData.userID!,
+                                          _currentStep ?? userData.step!,
+                                        );
+                                      }
+                                      setState(() {
+                                        loading = false;
+                                      });
+                                    }),
+
+                                //register fitbit
+                                RaisedButton(
+                                    color: Colors.pink,
+                                    child: const Text('Fitbit Login',
+                                        style: TextStyle(color: Colors.white)),
+                                    onPressed: () async {
                                       setState(() {
                                         loading = true;
                                       });
-                                      await DatabaseService(uid: user.uid)
-                                          .updateUserData(
-                                        _currentName ?? userData.name!,
-                                        _currentSurname ?? userData.surname!,
-                                        _currentAge ?? userData.age!,
-                                        _currentWeigth ?? userData.weigth!,
-                                        _currentHeigth ?? userData.heigth!,
-                                        _currentNickname ?? userData.nickname!,
-                                        _currentUserID ?? userData.userID!,
-                                        _currentStep ?? userData.step!,
+                                      String? userId =
+                                          await FitbitConnector.authorize(
+                                              context: context,
+                                              clientID: Strings.fitbitClientID,
+                                              clientSecret:
+                                                  Strings.fitbitClientSecret,
+                                              redirectUri:
+                                                  Strings.fitbitRedirectUri,
+                                              callbackUrlScheme:
+                                                  Strings.fitbitCallbackScheme);
+                                      _currentUserID = userId;
+                                      await FitbitConnector.storage
+                                          .read(key: 'fitbitAccessToken');
+                                      await FitbitConnector.storage
+                                          .read(key: 'fitbitRefreshToken');
+
+                                      //Instantiate a proper data manager
+                                      FitbitActivityTimeseriesDataManager
+                                          fitbitActivityTimeseriesDataManager =
+                                          FitbitActivityTimeseriesDataManager(
+                                        clientID: Strings.fitbitClientID,
+                                        clientSecret:
+                                            Strings.fitbitClientSecret,
+                                        type: 'calories',
                                       );
-                                    }
-                                    setState(() {
-                                      loading = false;
-                                    });
-                                  }),
 
-                              //register fitbit
-                              RaisedButton(
-                                  color: Colors.pink,
-                                  child: const Text('Fitbit Login',
-                                      style: TextStyle(color: Colors.white)),
-                                  onPressed: () async {
-                                    setState(() {
-                                      loading = true;
-                                    });
-                                    String? userId =
-                                        await FitbitConnector.authorize(
-                                            context: context,
-                                            clientID: Strings.fitbitClientID,
-                                            clientSecret:
-                                                Strings.fitbitClientSecret,
-                                            redirectUri:
-                                                Strings.fitbitRedirectUri,
-                                            callbackUrlScheme:
-                                                Strings.fitbitCallbackScheme);
-                                    _currentUserID = userId;
-                                    await FitbitConnector.storage
-                                        .read(key: 'fitbitAccessToken');
-                                    await FitbitConnector.storage
-                                        .read(key: 'fitbitRefreshToken');
+                                      //Fetch data
+                                      List<String> stepvalue = [];
 
-                                    //Instantiate a proper data manager
-                                    FitbitActivityTimeseriesDataManager
-                                        fitbitActivityTimeseriesDataManager =
-                                        FitbitActivityTimeseriesDataManager(
-                                      clientID: Strings.fitbitClientID,
-                                      clientSecret: Strings.fitbitClientSecret,
-                                      type: 'calories',
-                                    );
+                                      for (var i = 0; i < 30; i++) {
+                                        List<FitbitActivityTimeseriesData>?
+                                            stepData =
+                                            await fitbitActivityTimeseriesDataManager
+                                                .fetch(
+                                                    FitbitActivityTimeseriesAPIURL
+                                                        .dayWithResource(
+                                          date: DateTime.now()
+                                              .subtract(Duration(days: i)),
+                                          userID: userId,
+                                          resource:
+                                              fitbitActivityTimeseriesDataManager
+                                                  .type,
+                                        )) as List<
+                                                FitbitActivityTimeseriesData>;
+                                        //print(stepData);
+                                        var stepsinfo =
+                                            stepData.toString().split(': ');
+                                        String K =
+                                            stepsinfo[stepsinfo.length - 1];
+                                        var stepday = K.split(',');
+                                        //print(stepday[0]);
 
-                                    //Fetch data
-                                    List<String> stepvalue = [];
+                                        stepvalue.add(stepday[0]);
+                                      }
 
-                                    for (var i = 0; i < 30; i++) {
-                                      List<FitbitActivityTimeseriesData>?
-                                          stepData =
-                                          await fitbitActivityTimeseriesDataManager
-                                              .fetch(
-                                                  FitbitActivityTimeseriesAPIURL
-                                                      .dayWithResource(
-                                        date: DateTime.now()
-                                            .subtract(Duration(days: i)),
-                                        userID: userId,
-                                        resource:
-                                            fitbitActivityTimeseriesDataManager
-                                                .type,
-                                      )) as List<FitbitActivityTimeseriesData>;
-                                      //print(stepData);
-                                      var stepsinfo =
-                                          stepData.toString().split(': ');
-                                      String K =
-                                          stepsinfo[stepsinfo.length - 1];
-                                      var stepday = K.split(',');
-                                      //print(stepday[0]);
+                                      //print(test);
+                                      setState(() {
+                                        loading = false;
+                                      });
 
-                                      stepvalue.add(stepday[0]);
-                                    }
-
-                                    //print(test);
-                                    setState(() {
-                                      loading = false;
-                                    });
-
-                                    _currentStep = stepvalue;
-                                  })
-                            ],
-                          ),
+                                      _currentStep = stepvalue;
+                                    })
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     );
