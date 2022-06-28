@@ -29,6 +29,9 @@ class _ProfileState extends State<Profile> {
   String? _currentNickname;
   String? _currentUserID;
   List? _currentStep;
+  List? _currentCalories;
+  List? _currentWorkout;
+  List? _currentSleep;
 
   @override
   Widget build(BuildContext context) {
@@ -142,16 +145,25 @@ class _ProfileState extends State<Profile> {
                                         });
                                         await DatabaseService(uid: user.uid)
                                             .updateUserData(
-                                          _currentName ?? userData.name!,
-                                          _currentSurname ?? userData.surname!,
-                                          _currentAge ?? userData.age!,
-                                          _currentWeigth ?? userData.weigth!,
-                                          _currentHeigth ?? userData.heigth!,
-                                          _currentNickname ??
-                                              userData.nickname!,
-                                          _currentUserID ?? userData.userID!,
-                                          _currentStep ?? userData.step!,
-                                        );
+                                                _currentName ?? userData.name!,
+                                                _currentSurname ??
+                                                    userData.surname!,
+                                                _currentAge ?? userData.age!,
+                                                _currentWeigth ??
+                                                    userData.weigth!,
+                                                _currentHeigth ??
+                                                    userData.heigth!,
+                                                _currentNickname ??
+                                                    userData.nickname!,
+                                                _currentUserID ??
+                                                    userData.userID!,
+                                                _currentStep ?? userData.step!,
+                                                _currentCalories ??
+                                                    userData.calories!,
+                                                _currentWorkout ??
+                                                    userData.workout!,
+                                                _currentSleep ??
+                                                    userData.sleep!);
                                       }
                                       setState(() {
                                         loading = false;

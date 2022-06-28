@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fit_app_exam/models/user.dart';
 
 class pet {
   final String name;
@@ -9,6 +10,9 @@ class pet {
   final String nickname;
   final String userID;
   final List step;
+  final List calories;
+  final List workout;
+  final List sleep;
 
   pet(
       {required this.name,
@@ -18,5 +22,8 @@ class pet {
       required this.weigth,
       required this.nickname,
       required this.userID,
-      required this.step});
+      required this.step,
+      required this.calories,
+      required this.workout,
+      required this.sleep});
 }

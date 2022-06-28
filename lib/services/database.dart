@@ -11,8 +11,18 @@ class DatabaseService {
   final CollectionReference petCollection =
       FirebaseFirestore.instance.collection('petfit');
 
-  Future updateUserData(String Name, String Surname, String Age, String Weigth,
-      String Heigth, String Nickname, String userID, List step) async {
+  Future updateUserData(
+      String Name,
+      String Surname,
+      String Age,
+      String Weigth,
+      String Heigth,
+      String Nickname,
+      String userID,
+      List step,
+      List calories,
+      List workout,
+      List sleep) async {
     return await petCollection.doc(uid).set({
       'Name': Name,
       'Surname': Surname,
@@ -22,6 +32,9 @@ class DatabaseService {
       'Nickname': Nickname,
       'UserID': userID,
       'ListStep': step,
+      'ListCalories': calories,
+      'ListWorkout': workout,
+      'ListSleep': sleep
     });
   }
 
@@ -37,7 +50,10 @@ class DatabaseService {
           heigth: doc.get('Heigth') ?? 0,
           nickname: doc.get('Nickname') ?? '',
           userID: doc.get('UserID') ?? '',
-          step: doc.get('ListStep') ?? []);
+          step: doc.get('ListStep') ?? [],
+          calories: doc.get('ListCalories') ?? [],
+          workout: doc.get('ListWorkout') ?? [],
+          sleep: doc.get('ListSleep') ?? []);
     }).toList();
   }
 
@@ -45,16 +61,18 @@ class DatabaseService {
 
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
-      uid: uid,
-      name: snapshot['Name'],
-      surname: snapshot['Surname'],
-      age: snapshot['Age'],
-      heigth: snapshot['Heigth'],
-      weigth: snapshot['Weigth'],
-      nickname: snapshot['Nickname'],
-      userID: snapshot['UserID'],
-      step: snapshot['ListStep'],
-    );
+        uid: uid,
+        name: snapshot['Name'],
+        surname: snapshot['Surname'],
+        age: snapshot['Age'],
+        heigth: snapshot['Heigth'],
+        weigth: snapshot['Weigth'],
+        nickname: snapshot['Nickname'],
+        userID: snapshot['UserID'],
+        step: snapshot['ListStep'],
+        calories: snapshot['ListCalories'],
+        workout: snapshot['ListWorkout'],
+        sleep: snapshot['ListSleep']);
   }
 
   //get stream

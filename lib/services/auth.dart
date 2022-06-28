@@ -65,6 +65,9 @@ class AuthService {
           '',
           '',
           '',
+          [],
+          [],
+          [],
           []); //'$name', '$surname', $age, $weigth, $heigth, $nickname, $userfitbit
       return _userFromFirebaseUser(user);
     } catch (e) {
