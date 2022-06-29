@@ -138,16 +138,6 @@ class Fetch extends State<Graphs> {
                         charts.ColorUtil.fromDartColor(series.colorVal),
                   ),
                 ];
-                List<charts.Series<BarChartModel, String>> series_sleep = [
-                  charts.Series(
-                    id: "Sleep",
-                    data: data_sleep,
-                    domainFn: (BarChartModel series, _) => series.task,
-                    measureFn: (BarChartModel series, _) => series.value,
-                    colorFn: (BarChartModel series, _) =>
-                        charts.ColorUtil.fromDartColor(series.colorVal),
-                  ),
-                ];
                 List<charts.Series<BarChartModel, String>> series_calories = [
                   charts.Series(
                     id: "Calories",
@@ -158,6 +148,17 @@ class Fetch extends State<Graphs> {
                         charts.ColorUtil.fromDartColor(series.colorVal),
                   ),
                 ];
+                List<charts.Series<BarChartModel, String>> series_sleep = [
+                  charts.Series(
+                    id: "Sleep",
+                    data: data_sleep,
+                    domainFn: (BarChartModel series, _) => series.task,
+                    measureFn: (BarChartModel series, _) => series.value,
+                    colorFn: (BarChartModel series, _) =>
+                        charts.ColorUtil.fromDartColor(series.colorVal),
+                  ),
+                ];
+
                 List<charts.Series<BarChartModel, String>> series_workout = [
                   charts.Series(
                     id: "Work out",

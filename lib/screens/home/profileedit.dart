@@ -28,6 +28,7 @@ class _ProfileState extends State<Profile> {
   String? _currentWeigth;
   String? _currentNickname;
   String? _currentUserID;
+  String? _currentLoginDate;
   List? _currentStep;
   List? _currentCalories;
   List? _currentWorkout;
@@ -157,6 +158,8 @@ class _ProfileState extends State<Profile> {
                                                     userData.nickname!,
                                                 _currentUserID ??
                                                     userData.userID!,
+                                                _currentLoginDate ??
+                                                    userData.loginDate!,
                                                 _currentStep ?? userData.step!,
                                                 _currentCalories ??
                                                     userData.calories!,

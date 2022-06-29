@@ -19,6 +19,7 @@ class DatabaseService {
       String Heigth,
       String Nickname,
       String userID,
+      String loginDate,
       List step,
       List calories,
       List workout,
@@ -31,6 +32,7 @@ class DatabaseService {
       'Heigth': Heigth,
       'Nickname': Nickname,
       'UserID': userID,
+      'LoginDate': loginDate,
       'ListStep': step,
       'ListCalories': calories,
       'ListWorkout': workout,
@@ -50,6 +52,7 @@ class DatabaseService {
           heigth: doc.get('Heigth') ?? 0,
           nickname: doc.get('Nickname') ?? '',
           userID: doc.get('UserID') ?? '',
+          loginDate: doc.get('LoginDate') ?? '',
           step: doc.get('ListStep') ?? [],
           calories: doc.get('ListCalories') ?? [],
           workout: doc.get('ListWorkout') ?? [],
@@ -72,7 +75,8 @@ class DatabaseService {
         step: snapshot['ListStep'],
         calories: snapshot['ListCalories'],
         workout: snapshot['ListWorkout'],
-        sleep: snapshot['ListSleep']);
+        sleep: snapshot['ListSleep'],
+        loginDate: snapshot['LoginDate']);
   }
 
   //get stream
