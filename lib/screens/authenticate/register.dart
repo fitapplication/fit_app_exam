@@ -46,25 +46,33 @@ class _RegisterState extends State<Register> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 20.0),
-                        TextFormField(
-                            decoration:
-                                textInputDecoration.copyWith(hintText: 'Email'),
-                            validator: (val) =>
-                                val!.isEmpty ? 'Enter Email' : null,
-                            onChanged: (val) {
-                              setState(() => email = val);
-                            }),
-                        TextFormField(
-                            decoration: textInputDecoration.copyWith(
-                                hintText: 'Password'),
-                            obscureText: true,
-                            validator: (val) => val!.length < 6
-                                ? 'Enter password 6+ char long'
-                                : null,
-                            onChanged: (val) {
-                              setState(() => password = val);
-                            }),
+                        Container(
+                            child: const Icon(Icons.lock_person_rounded,
+                                color: Color(0XFF1e665b), size: 70.0)),
+                        const SizedBox(height: 30.0),
+                        Container(
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            child: Column(children: [
+                              TextFormField(
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Email'),
+                                  validator: (val) =>
+                                      val!.isEmpty ? 'Enter Email' : null,
+                                  onChanged: (val) {
+                                    setState(() => email = val);
+                                  }),
+                              const SizedBox(height: 5.0),
+                              TextFormField(
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Password'),
+                                  obscureText: true,
+                                  validator: (val) => val!.length < 6
+                                      ? 'Enter password 6+ char long'
+                                      : null,
+                                  onChanged: (val) {
+                                    setState(() => password = val);
+                                  })
+                            ])),
                         SizedBox(height: 20.0),
                         RaisedButton(
                             color: Color(0XFF1e665b),
