@@ -7,6 +7,7 @@ import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/constants.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
+import 'package:fit_app_exam/models/pet.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -33,28 +34,34 @@ class _ProfileState extends State<Profile> {
   List? _currentCalories;
   List? _currentWorkout;
   List? _currentSleep;
+  bool boolcheck = true;
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Username>(context);
+    if (_currentNickname == null) {
+      boolcheck = false;
+    }
     return loading
         ? Loading()
         : Scaffold(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              title: const Text('PetFit'),
-              backgroundColor: Color(0XFF1e665b),
-              elevation: 0.0,
-              actions: <Widget>[
-                FlatButton.icon(
-                  icon: const Icon(Icons.home),
-                  label: const Text('Home'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            ),
+            appBar: boolcheck
+                ? AppBar(
+                    title: const Text('PetFit'),
+                    backgroundColor: Color(0XFF1e665b),
+                    elevation: 0.0,
+                    actions: <Widget>[
+                      FlatButton.icon(
+                        icon: const Icon(Icons.home),
+                        label: const Text('Home'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      )
+                    ],
+                  )
+                : null,
             body: StreamBuilder<UserData>(
                 stream: DatabaseService(uid: user.uid).userData,
                 builder: (context, snapshot) {
@@ -179,6 +186,8 @@ class _ProfileState extends State<Profile> {
                                     child: const Text('Fitbit Login',
                                         style: TextStyle(color: Colors.white)),
                                     onPressed: () async {
+                                      _currentLoginDate =
+                                          DateTime.now().toString();
                                       setState(() {
                                         loading = true;
                                       });
@@ -268,14 +277,16 @@ class _ProfileState extends State<Profile> {
 
                                         caloriesvalue.add(caloriesday[0]);
                                       }
+                                      //Fetch data
 
                                       //print(test);
                                       setState(() {
                                         loading = false;
                                       });
 
-                                      _currentStep = stepvalue;
                                       _currentCalories = caloriesvalue;
+
+                                      _currentStep = stepvalue;
                                     })
                               ],
                             ),
