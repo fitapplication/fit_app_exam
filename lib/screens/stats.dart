@@ -60,76 +60,82 @@ class Fetch extends State<Graphs> {
                 var step_list_7 = userData?.step;
                 var calories_list_7 = userData?.calories;
 
-                var sleep_list_7 = userData?.step;
+                var heart_list_7 = userData?.heart;
 
-                var workout_list_7 = userData?.step;
+                var workout_list_7 = userData?.workout;
                 final List<BarChartModel> data_steps = [
                   BarChartModel(
-                      '1', double.parse(step_list_7?[6]), Colors.blue),
-                  BarChartModel('2', double.parse(step_list_7?[5]), Colors.red),
+                      '1', double.parse(step_list_7?[6]).round(), Colors.blue),
                   BarChartModel(
-                      '3', double.parse(step_list_7?[4]), Colors.yellow),
+                      '2', double.parse(step_list_7?[5]).round(), Colors.red),
+                  BarChartModel('3', double.parse(step_list_7?[4]).round(),
+                      Colors.yellow),
                   BarChartModel(
-                      '4', double.parse(step_list_7?[3]), Colors.brown),
-                  BarChartModel(
-                      '5', double.parse(step_list_7?[2]), Colors.indigo),
-                  BarChartModel(
-                      '6', double.parse(step_list_7?[1]), Colors.purple),
-                  BarChartModel(
-                      '7', double.parse(step_list_7?[0]), Colors.orange),
+                      '4', double.parse(step_list_7?[3]).round(), Colors.brown),
+                  BarChartModel('5', double.parse(step_list_7?[2]).round(),
+                      Colors.indigo),
+                  BarChartModel('6', double.parse(step_list_7?[1]).round(),
+                      Colors.purple),
+                  BarChartModel('7', double.parse(step_list_7?[0]).round(),
+                      Colors.orange),
                 ];
 
                 final List<BarChartModel> data_calories = [
-                  BarChartModel(
-                      '1', double.parse(calories_list_7?[6]), Colors.blue),
-                  BarChartModel(
-                      '2', double.parse(calories_list_7?[5]), Colors.red),
-                  BarChartModel(
-                      '3', double.parse(calories_list_7?[4]), Colors.yellow),
-                  BarChartModel(
-                      '4', double.parse(calories_list_7?[3]), Colors.brown),
-                  BarChartModel(
-                      '5', double.parse(calories_list_7?[2]), Colors.indigo),
-                  BarChartModel(
-                      '6', double.parse(calories_list_7?[1]), Colors.purple),
-                  BarChartModel(
-                      '7', double.parse(calories_list_7?[0]), Colors.orange),
+                  BarChartModel('1', double.parse(calories_list_7?[6]).round(),
+                      Colors.blue),
+                  BarChartModel('2', double.parse(calories_list_7?[5]).round(),
+                      Colors.red),
+                  BarChartModel('3', double.parse(calories_list_7?[4]).round(),
+                      Colors.yellow),
+                  BarChartModel('4', double.parse(calories_list_7?[3]).round(),
+                      Colors.brown),
+                  BarChartModel('5', double.parse(calories_list_7?[2]).round(),
+                      Colors.indigo),
+                  BarChartModel('6', double.parse(calories_list_7?[1]).round(),
+                      Colors.purple),
+                  BarChartModel('7', double.parse(calories_list_7?[0]).round(),
+                      Colors.orange),
                 ];
-                final List<BarChartModel> data_sleep = [
+                final List<BarChartModel> data_heart = [
                   BarChartModel(
-                      '1', double.parse(sleep_list_7?[6]), Colors.blue),
+                      '1', double.parse(heart_list_7?[6]).round(), Colors.blue),
                   BarChartModel(
-                      '2', double.parse(sleep_list_7?[5]), Colors.red),
-                  BarChartModel(
-                      '3', double.parse(sleep_list_7?[4]), Colors.yellow),
-                  BarChartModel(
-                      '4', double.parse(sleep_list_7?[3]), Colors.brown),
-                  BarChartModel(
-                      '5', double.parse(sleep_list_7?[2]), Colors.indigo),
-                  BarChartModel(
-                      '6', double.parse(sleep_list_7?[1]), Colors.purple),
-                  BarChartModel(
-                      '7', double.parse(sleep_list_7?[0]), Colors.orange),
+                      '2', double.parse(heart_list_7?[5]).round(), Colors.red),
+                  BarChartModel('3', double.parse(heart_list_7?[4]).round(),
+                      Colors.yellow),
+                  BarChartModel('4', double.parse(heart_list_7?[3]).round(),
+                      Colors.brown),
+                  BarChartModel('5', double.parse(heart_list_7?[2]).round(),
+                      Colors.indigo),
+                  BarChartModel('6', double.parse(heart_list_7?[1]).round(),
+                      Colors.purple),
+                  BarChartModel('7', double.parse(heart_list_7?[0]).round(),
+                      Colors.orange),
                 ];
                 final List<BarChartModel> data_workout = [
-                  BarChartModel(
-                      '1', double.parse(workout_list_7?[6]), Colors.blue),
-                  BarChartModel(
-                      '2', double.parse(workout_list_7?[5]), Colors.red),
-                  BarChartModel(
-                      '3', double.parse(workout_list_7?[4]), Colors.yellow),
-                  BarChartModel(
-                      '4', double.parse(workout_list_7?[3]), Colors.brown),
-                  BarChartModel(
-                      '5', double.parse(workout_list_7?[2]), Colors.indigo),
-                  BarChartModel(
-                      '6', double.parse(workout_list_7?[1]), Colors.purple),
-                  BarChartModel(
-                      '7', double.parse(workout_list_7?[0]), Colors.orange),
+                  BarChartModel('1', double.parse(workout_list_7?[6]).round(),
+                      Colors.blue),
+                  BarChartModel('2', double.parse(workout_list_7?[5]).round(),
+                      Colors.red),
+                  BarChartModel('3', double.parse(workout_list_7?[4]).round(),
+                      Colors.yellow),
+                  BarChartModel('4', double.parse(workout_list_7?[3]).round(),
+                      Colors.brown),
+                  BarChartModel('5', double.parse(workout_list_7?[2]).round(),
+                      Colors.indigo),
+                  BarChartModel('6', double.parse(workout_list_7?[1]).round(),
+                      Colors.purple),
+                  BarChartModel('7', double.parse(workout_list_7?[0]).round(),
+                      Colors.orange),
                 ];
                 // List? _currentStep;
                 List<charts.Series<BarChartModel, String>> series_steps = [
                   charts.Series(
+                    labelAccessorFn: (BarChartModel series, _) =>
+                        '${series.value.toString()}',
+                    insideLabelStyleAccessorFn: (BarChartModel series, _) {
+                      return charts.TextStyleSpec(fontSize: 15);
+                    },
                     id: "Steps",
                     data: data_steps,
                     domainFn: (BarChartModel series, _) => series.task,
@@ -140,6 +146,11 @@ class Fetch extends State<Graphs> {
                 ];
                 List<charts.Series<BarChartModel, String>> series_calories = [
                   charts.Series(
+                    labelAccessorFn: (BarChartModel series, _) =>
+                        '${series.value.toString()}',
+                    insideLabelStyleAccessorFn: (BarChartModel series, _) {
+                      return charts.TextStyleSpec(fontSize: 15);
+                    },
                     id: "Calories",
                     data: data_calories,
                     domainFn: (BarChartModel series, _) => series.task,
@@ -148,10 +159,15 @@ class Fetch extends State<Graphs> {
                         charts.ColorUtil.fromDartColor(series.colorVal),
                   ),
                 ];
-                List<charts.Series<BarChartModel, String>> series_sleep = [
+                List<charts.Series<BarChartModel, String>> series_heart = [
                   charts.Series(
-                    id: "Sleep",
-                    data: data_sleep,
+                    labelAccessorFn: (BarChartModel series, _) =>
+                        '${series.value.toString()}',
+                    insideLabelStyleAccessorFn: (BarChartModel series, _) {
+                      return charts.TextStyleSpec(fontSize: 15);
+                    },
+                    id: "Heart Resting State",
+                    data: data_heart,
                     domainFn: (BarChartModel series, _) => series.task,
                     measureFn: (BarChartModel series, _) => series.value,
                     colorFn: (BarChartModel series, _) =>
@@ -161,12 +177,15 @@ class Fetch extends State<Graphs> {
 
                 List<charts.Series<BarChartModel, String>> series_workout = [
                   charts.Series(
+                    labelAccessorFn: (BarChartModel series, _) =>
+                        '${series.value.toString()}',
+                    insideLabelStyleAccessorFn: (BarChartModel series, _) {
+                      return charts.TextStyleSpec(fontSize: 15);
+                    },
                     id: "Work out",
                     data: data_workout,
                     domainFn: (BarChartModel series, _) => series.task,
                     measureFn: (BarChartModel series, _) => series.value,
-                    labelAccessorFn: (BarChartModel series, _) =>
-                        '\${series.value}',
                     colorFn: (BarChartModel series, _) =>
                         charts.ColorUtil.fromDartColor(series.colorVal),
                   ),
@@ -200,14 +219,17 @@ class Fetch extends State<Graphs> {
                             child: charts.BarChart(
                               series_steps,
                               animate: true,
+                              barRendererDecorator:
+                                  charts.BarLabelDecorator<String>(),
+                              vertical: false,
                               animationDuration: const Duration(seconds: 1),
                               behaviors: [
-                                charts.ChartTitle('Days',
+                                charts.ChartTitle('Steps counter',
                                     behaviorPosition:
                                         charts.BehaviorPosition.bottom,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                charts.ChartTitle('Steps counter',
+                                charts.ChartTitle('Days',
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
@@ -231,14 +253,17 @@ class Fetch extends State<Graphs> {
                             child: charts.BarChart(
                               series_calories,
                               animate: true,
+                              barRendererDecorator:
+                                  charts.BarLabelDecorator<String>(),
+                              vertical: false,
                               animationDuration: const Duration(seconds: 1),
                               behaviors: [
-                                charts.ChartTitle('Days',
+                                charts.ChartTitle('Calories Burnt',
                                     behaviorPosition:
                                         charts.BehaviorPosition.bottom,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                charts.ChartTitle('Calories Burnt',
+                                charts.ChartTitle('Days',
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
@@ -249,7 +274,7 @@ class Fetch extends State<Graphs> {
                           const SizedBox(
                             height: 60.0,
                             child: Text(
-                              'Sleep',
+                              'Heart Resting State',
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
@@ -260,16 +285,19 @@ class Fetch extends State<Graphs> {
                             height: (MediaQuery.of(context).size.height) -
                                 ((MediaQuery.of(context).size.height) * 0.20),
                             child: charts.BarChart(
-                              series_sleep,
+                              series_heart,
                               animate: true,
+                              barRendererDecorator:
+                                  charts.BarLabelDecorator<String>(),
+                              vertical: false,
                               animationDuration: const Duration(seconds: 1),
                               behaviors: [
-                                charts.ChartTitle('Days',
+                                charts.ChartTitle('Heart Resting State',
                                     behaviorPosition:
                                         charts.BehaviorPosition.bottom,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                charts.ChartTitle('Sleep Hours',
+                                charts.ChartTitle('Days',
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
@@ -293,14 +321,17 @@ class Fetch extends State<Graphs> {
                             child: charts.BarChart(
                               series_workout,
                               animate: true,
+                              barRendererDecorator:
+                                  charts.BarLabelDecorator<String>(),
+                              vertical: false,
                               animationDuration: const Duration(seconds: 1),
                               behaviors: [
-                                charts.ChartTitle('Days',
+                                charts.ChartTitle('Work out minutes',
                                     behaviorPosition:
                                         charts.BehaviorPosition.bottom,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                charts.ChartTitle('Work out hours',
+                                charts.ChartTitle('Days',
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
@@ -345,7 +376,7 @@ class Fetch extends State<Graphs> {
 
 class BarChartModel {
   String task = '';
-  double value = 0;
+  int value = 0;
   Color colorVal = const Color.fromARGB(0, 254, 0, 0);
 
   BarChartModel(this.task, this.value, this.colorVal);
