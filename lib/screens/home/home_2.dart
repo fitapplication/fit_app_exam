@@ -12,14 +12,14 @@ import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/user.dart';
 import 'package:fit_app_exam/screens/home/globals.dart' as globals;
 
-int algorithm(var sleepHours, var exerciceHours, var workoutHours) {
+int algorithm(var heartRate, var exerciceHours, var workoutHours) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
   int results = 0;
 
-  if (sleepHours < 8) {
-    par1 = (8 - sleepHours) / 8;
+  if (heartRate < 8) {
+    par1 = (8 - heartRate) / 8;
   }
   if (exerciceHours < 2) {
     par2 = (2 - exerciceHours) / 2;
@@ -40,14 +40,14 @@ int algorithm(var sleepHours, var exerciceHours, var workoutHours) {
   return results;
 }
 
-double algorithm_bar(var sleepHours, var exerciceHours, var workoutHours) {
+double algorithm_bar(var heartRate, var exerciceHours, var workoutHours) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
   double results = 0;
 
-  if (sleepHours < 8) {
-    par1 = (8 - sleepHours) / 8;
+  if (heartRate < 8) {
+    par1 = (8 - heartRate) / 8;
   }
   if (exerciceHours < 2) {
     par2 = (2 - exerciceHours) / 2;
@@ -74,7 +74,7 @@ String check(int test) {
   if (test == 1) {
     imagecheck = "https://c.tenor.com/OTiUFg5Z2coAAAAC/pusheen-play.gif";
   } else if (test == 2) {
-    imagecheck = "https://c.tenor.com/MVwqWHzPXNwAAAAC/pusheen-goodnight.gif";
+    imagecheck = "https://c.tenor.com/TRZAcsIM70oAAAAC/grrr-cat.gif";
   } else if (test == 3) {
     imagecheck = 'https://c.tenor.com/sJnOE_eYvFcAAAAC/pusheen.gif';
   } else if (test == 4) {
@@ -88,7 +88,7 @@ String checktext(int test) {
   if (test == 1) {
     textcheck = 'Your pet needs less calories!';
   } else if (test == 2) {
-    textcheck = 'Your pet needs more sleep!';
+    textcheck = 'Your pet needs to relax!';
   } else if (test == 3) {
     textcheck = 'Your pet is perfectly healty!';
   } else if (test == 4) {
@@ -102,13 +102,13 @@ class home_2 extends StatefulWidget {
   State<home_2> createState() => _home_2State();
 }
 
-var sleepHours = Random().nextDouble() * 10;
+var heartRate = Random().nextDouble() * 10;
 var exerciceHours = Random().nextDouble() * 4;
 var workoutHours = Random().nextDouble() * 1;
 double percentageCompletion =
-    (1 - (algorithm_bar(sleepHours, exerciceHours, workoutHours))) * 100;
+    (1 - (algorithm_bar(heartRate, exerciceHours, workoutHours))) * 100;
 
-int test = algorithm(sleepHours, exerciceHours, workoutHours);
+int test = algorithm(heartRate, exerciceHours, workoutHours);
 
 class _home_2State extends State<home_2> {
   final AuthService _auth = AuthService();
@@ -224,8 +224,8 @@ class _home_2State extends State<home_2> {
                                     animationDuration: 1200,
                                     padding: const EdgeInsets.only(top: 10.0),
                                     percent: (1 -
-                                        (algorithm_bar(sleepHours,
-                                            exerciceHours, workoutHours))),
+                                        (algorithm_bar(heartRate, exerciceHours,
+                                            workoutHours))),
                                     progressColor: Colors.red,
                                     backgroundColor: Colors.green,
                                     center: Text(
