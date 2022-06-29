@@ -58,13 +58,11 @@ class Fetch extends State<Graphs> {
               if (snapshot.hasData) {
                 UserData? userData = snapshot.data;
                 var step_list_7 = userData?.step;
+                var calories_list_7 = userData?.calories;
 
                 var sleep_list_7 = userData?.step;
 
-                var calories_list_7 = userData?.step;
-
                 var workout_list_7 = userData?.step;
-
                 final List<BarChartModel> data_steps = [
                   BarChartModel(
                       '1', double.parse(step_list_7?[6]), Colors.blue),
@@ -81,22 +79,6 @@ class Fetch extends State<Graphs> {
                       '7', double.parse(step_list_7?[0]), Colors.orange),
                 ];
 
-                final List<BarChartModel> data_sleep = [
-                  BarChartModel(
-                      '1', double.parse(sleep_list_7?[6]), Colors.blue),
-                  BarChartModel(
-                      '2', double.parse(sleep_list_7?[5]), Colors.red),
-                  BarChartModel(
-                      '3', double.parse(sleep_list_7?[4]), Colors.yellow),
-                  BarChartModel(
-                      '4', double.parse(sleep_list_7?[3]), Colors.brown),
-                  BarChartModel(
-                      '5', double.parse(sleep_list_7?[2]), Colors.indigo),
-                  BarChartModel(
-                      '6', double.parse(sleep_list_7?[1]), Colors.purple),
-                  BarChartModel(
-                      '7', double.parse(sleep_list_7?[0]), Colors.orange),
-                ];
                 final List<BarChartModel> data_calories = [
                   BarChartModel(
                       '1', double.parse(calories_list_7?[6]), Colors.blue),
@@ -112,6 +94,22 @@ class Fetch extends State<Graphs> {
                       '6', double.parse(calories_list_7?[1]), Colors.purple),
                   BarChartModel(
                       '7', double.parse(calories_list_7?[0]), Colors.orange),
+                ];
+                final List<BarChartModel> data_sleep = [
+                  BarChartModel(
+                      '1', double.parse(sleep_list_7?[6]), Colors.blue),
+                  BarChartModel(
+                      '2', double.parse(sleep_list_7?[5]), Colors.red),
+                  BarChartModel(
+                      '3', double.parse(sleep_list_7?[4]), Colors.yellow),
+                  BarChartModel(
+                      '4', double.parse(sleep_list_7?[3]), Colors.brown),
+                  BarChartModel(
+                      '5', double.parse(sleep_list_7?[2]), Colors.indigo),
+                  BarChartModel(
+                      '6', double.parse(sleep_list_7?[1]), Colors.purple),
+                  BarChartModel(
+                      '7', double.parse(sleep_list_7?[0]), Colors.orange),
                 ];
                 final List<BarChartModel> data_workout = [
                   BarChartModel(
@@ -217,6 +215,37 @@ class Fetch extends State<Graphs> {
                           const SizedBox(
                             height: 60.0,
                             child: Text(
+                              'Calories',
+                              style: TextStyle(
+                                  fontSize: 24.0, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: (MediaQuery.of(context).size.height) -
+                                ((MediaQuery.of(context).size.height) * 0.20),
+                            child: charts.BarChart(
+                              series_calories,
+                              animate: true,
+                              animationDuration: const Duration(seconds: 1),
+                              behaviors: [
+                                charts.ChartTitle('Days',
+                                    behaviorPosition:
+                                        charts.BehaviorPosition.bottom,
+                                    titleOutsideJustification: charts
+                                        .OutsideJustification.middleDrawArea),
+                                charts.ChartTitle('Calories Burnt',
+                                    behaviorPosition:
+                                        charts.BehaviorPosition.start,
+                                    titleOutsideJustification: charts
+                                        .OutsideJustification.middleDrawArea),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 60.0,
+                            child: Text(
                               'Sleep',
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold),
@@ -238,37 +267,6 @@ class Fetch extends State<Graphs> {
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
                                 charts.ChartTitle('Sleep Hours',
-                                    behaviorPosition:
-                                        charts.BehaviorPosition.start,
-                                    titleOutsideJustification: charts
-                                        .OutsideJustification.middleDrawArea),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 60.0,
-                            child: Text(
-                              'Calories',
-                              style: TextStyle(
-                                  fontSize: 24.0, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: (MediaQuery.of(context).size.height) -
-                                ((MediaQuery.of(context).size.height) * 0.20),
-                            child: charts.BarChart(
-                              series_calories,
-                              animate: true,
-                              animationDuration: const Duration(seconds: 1),
-                              behaviors: [
-                                charts.ChartTitle('Days',
-                                    behaviorPosition:
-                                        charts.BehaviorPosition.bottom,
-                                    titleOutsideJustification: charts
-                                        .OutsideJustification.middleDrawArea),
-                                charts.ChartTitle('Calories burnt',
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
