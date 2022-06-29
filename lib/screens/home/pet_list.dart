@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fit_app_exam/models/pet.dart';
-import 'package:fit_app_exam/shared/loading.dart';
 import 'package:fit_app_exam/screens/home/pet_tile.dart';
 import 'package:provider/provider.dart';
 

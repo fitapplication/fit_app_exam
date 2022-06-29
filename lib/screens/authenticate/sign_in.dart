@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fit_app_exam/services/auth.dart';
-import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/constants.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 

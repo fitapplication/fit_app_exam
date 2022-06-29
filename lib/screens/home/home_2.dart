@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:fit_app_exam/models/pet.dart';
 import 'package:fit_app_exam/screens/home/profileedit.dart';
 import 'package:fit_app_exam/screens/home/setting_form.dart';
 import 'package:fit_app_exam/screens/stats.dart';
