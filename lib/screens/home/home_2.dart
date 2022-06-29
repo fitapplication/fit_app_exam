@@ -105,6 +105,8 @@ class home_2 extends StatefulWidget {
 var heartRate = Random().nextDouble() * 10;
 var exerciceHours = Random().nextDouble() * 4;
 var workoutHours = Random().nextDouble() * 1;
+String? _currentLoginDate;
+
 double percentageCompletion =
     (1 - (algorithm_bar(heartRate, exerciceHours, workoutHours))) * 100;
 
@@ -152,6 +154,7 @@ class _home_2State extends State<home_2> {
               IconButton(
                 icon: const Icon(Icons.person),
                 onPressed: () {
+                  globals.checknick = true;
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Profile()));
                 },
@@ -174,9 +177,31 @@ class _home_2State extends State<home_2> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 UserData? userData = snapshot.data;
+                _currentLoginDate = DateTime.now().toString();
                 if (userData!.nickname!.isEmpty) {
                   return Profile();
                 } else {
+                  List olddate = userData.loginDate!.split(' ');
+                  List actualdate = _currentLoginDate!.split(' ');
+
+                  List oldday = olddate[0].split('-');
+                  List actualday = actualdate[0].split('-');
+                  List oldhour = olddate[1].split(':');
+                  List actualhour = actualdate[1].split(':');
+                  String old_day = oldday[2];
+                  String actual_day = actualday[2];
+
+                  if (int.parse(actual_day) - int.parse(old_day) != 0) {
+                    globals.checknick = false;
+                    return Profile();
+                  }
+                  String old_hour = oldhour[0];
+                  String actual_hour = actualhour[0];
+                  if (int.parse(actual_hour) - int.parse(old_hour) > 8) {
+                    globals.checknick = false;
+                    return Profile();
+                  }
+
                   globals.checknick = true;
                   return Container(
                       height: MediaQuery.of(context).size.height,

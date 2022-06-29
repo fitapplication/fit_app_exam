@@ -176,6 +176,7 @@ class _ProfileState extends State<Profile> {
                                                 _currentHeart ??
                                                     userData.heart!);
                                       }
+
                                       globals.checknick = true;
                                       setState(() {
                                         loading = false;
