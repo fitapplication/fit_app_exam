@@ -16,7 +16,7 @@ class UserData {
   final List? step;
   final List? calories;
   final List? workout;
-  final List? sleep;
+  final List? heart;
 
   UserData(
       {this.uid,
@@ -31,5 +31,5 @@ class UserData {
       this.step,
       this.calories,
       this.workout,
-      this.sleep});
+      this.heart});
 }

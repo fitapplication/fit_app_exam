@@ -23,7 +23,7 @@ class DatabaseService {
       List step,
       List calories,
       List workout,
-      List sleep) async {
+      List heart) async {
     return await petCollection.doc(uid).set({
       'Name': Name,
       'Surname': Surname,
@@ -36,7 +36,7 @@ class DatabaseService {
       'ListStep': step,
       'ListCalories': calories,
       'ListWorkout': workout,
-      'ListSleep': sleep
+      'ListHeart': heart
     });
   }
 
@@ -56,7 +56,7 @@ class DatabaseService {
           step: doc.get('ListStep') ?? [],
           calories: doc.get('ListCalories') ?? [],
           workout: doc.get('ListWorkout') ?? [],
-          sleep: doc.get('ListSleep') ?? []);
+          heart: doc.get('ListHeart') ?? []);
     }).toList();
   }
 
@@ -75,7 +75,7 @@ class DatabaseService {
         step: snapshot['ListStep'],
         calories: snapshot['ListCalories'],
         workout: snapshot['ListWorkout'],
-        sleep: snapshot['ListSleep'],
+        heart: snapshot['ListHeart'],
         loginDate: snapshot['LoginDate']);
   }
 

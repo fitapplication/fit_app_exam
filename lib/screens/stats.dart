@@ -165,6 +165,8 @@ class Fetch extends State<Graphs> {
                     data: data_workout,
                     domainFn: (BarChartModel series, _) => series.task,
                     measureFn: (BarChartModel series, _) => series.value,
+                    labelAccessorFn: (BarChartModel series, _) =>
+                        '\${series.value}',
                     colorFn: (BarChartModel series, _) =>
                         charts.ColorUtil.fromDartColor(series.colorVal),
                   ),

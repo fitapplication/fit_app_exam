@@ -13,7 +13,7 @@ class pet {
   final List step;
   final List calories;
   final List workout;
-  final List sleep;
+  final List heart;
 
   pet(
       {required this.name,
@@ -27,5 +27,5 @@ class pet {
       required this.step,
       required this.calories,
       required this.workout,
-      required this.sleep});
+      required this.heart});
 }

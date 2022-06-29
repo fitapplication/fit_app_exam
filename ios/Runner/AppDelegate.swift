@@ -3,24 +3,16 @@ import Flutter
 import FirebaseCore
 
 @UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate {
+@objc class AppDelegate: FlutterAppDelegate, UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+     FirebaseApp.configure()
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-}
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-  var window: UIWindow?
-
-  func application(_ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions:
-      [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    FirebaseApp.configure()
-
     return true
   }
 }
+

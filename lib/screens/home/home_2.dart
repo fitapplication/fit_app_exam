@@ -10,6 +10,7 @@ import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/user.dart';
+import 'package:fit_app_exam/screens/home/globals.dart' as globals;
 
 int algorithm(var sleepHours, var exerciceHours, var workoutHours) {
   double par2 = 0;
@@ -176,6 +177,7 @@ class _home_2State extends State<home_2> {
                 if (userData!.nickname!.isEmpty) {
                   return Profile();
                 } else {
+                  globals.checknick = true;
                   return Container(
                       height: MediaQuery.of(context).size.height,
                       child: Column(children: <Widget>[

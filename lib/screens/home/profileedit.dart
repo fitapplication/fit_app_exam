@@ -8,6 +8,7 @@ import 'package:fit_app_exam/shared/constants.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/pet.dart';
+import 'package:fit_app_exam/screens/home/globals.dart' as globals;
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -33,13 +34,13 @@ class _ProfileState extends State<Profile> {
   List? _currentStep;
   List? _currentCalories;
   List? _currentWorkout;
-  List? _currentSleep;
+  List? _currentHeart;
   bool boolcheck = true;
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Username>(context);
-    if (_currentNickname == null) {
+    if (globals.checknick == false) {
       boolcheck = false;
     }
     return loading
@@ -172,9 +173,10 @@ class _ProfileState extends State<Profile> {
                                                     userData.calories!,
                                                 _currentWorkout ??
                                                     userData.workout!,
-                                                _currentSleep ??
-                                                    userData.sleep!);
+                                                _currentHeart ??
+                                                    userData.heart!);
                                       }
+                                      globals.checknick = true;
                                       setState(() {
                                         loading = false;
                                       });
@@ -224,10 +226,22 @@ class _ProfileState extends State<Profile> {
                                             Strings.fitbitClientSecret,
                                         type: 'calories',
                                       );
+                                      FitbitActivityTimeseriesDataManager
+                                          fitbitActivityTimeseriesDataManagerWorkout =
+                                          FitbitActivityTimeseriesDataManager(
+                                        clientID: Strings.fitbitClientID,
+                                        clientSecret:
+                                            Strings.fitbitClientSecret,
+                                        type: 'minutesFairlyActive',
+                                      );
+
+                                      //Fetch data
 
                                       //Fetch data
                                       List<String> stepvalue = [];
                                       List<String> caloriesvalue = [];
+                                      List<String> heartvalue = [];
+                                      List<String> workoutvalue = [];
                                       for (var i = 0; i < 7; i++) {
                                         List<FitbitActivityTimeseriesData>?
                                             stepData =
@@ -273,20 +287,69 @@ class _ProfileState extends State<Profile> {
                                         String F = caloriesinfo[
                                             caloriesinfo.length - 1];
                                         var caloriesday = F.split(',');
+                                        caloriesvalue.add(caloriesday[0]);
+
+                                        // Minutes of activity
+                                        List<FitbitActivityTimeseriesData>?
+                                            workoutData =
+                                            await fitbitActivityTimeseriesDataManagerWorkout
+                                                .fetch(
+                                                    FitbitActivityTimeseriesAPIURL
+                                                        .dayWithResource(
+                                          date: DateTime.now()
+                                              .subtract(Duration(days: i)),
+                                          userID: userId,
+                                          resource:
+                                              fitbitActivityTimeseriesDataManagerWorkout
+                                                  .type,
+                                        )) as List<
+                                                FitbitActivityTimeseriesData>;
+                                        //print(stepData);
+                                        var workoutinfo =
+                                            workoutData.toString().split(': ');
+                                        String H =
+                                            workoutinfo[workoutinfo.length - 1];
+                                        var workoutday = H.split(',');
                                         //print(stepday[0]);
 
-                                        caloriesvalue.add(caloriesday[0]);
+                                        workoutvalue.add(workoutday[0]);
+
+                                        FitbitHeartAPIURL fitbitHeartApiUrl =
+                                            FitbitHeartAPIURL.dayWithUserID(
+                                          date: DateTime.now()
+                                              .subtract(Duration(days: i)),
+                                          userID: _currentUserID,
+                                        );
+                                        FitbitHeartDataManager heartData =
+                                            FitbitHeartDataManager(
+                                          clientID: Strings.fitbitClientID,
+                                          clientSecret:
+                                              Strings.fitbitClientSecret,
+                                        );
+
+                                        List<FitbitHeartData> fitbitHeartData =
+                                            await heartData
+                                                    .fetch(fitbitHeartApiUrl)
+                                                as List<FitbitHeartData>;
+
+                                        var heartinfo = fitbitHeartData
+                                            .toString()
+                                            .split('restingHeartRate: ');
+
+                                        String G = heartinfo[1];
+                                        var heartday = G.split(',');
+                                        heartvalue.add(heartday[0]);
                                       }
-                                      //Fetch data
+                                      //Fetch data sleep
 
                                       //print(test);
                                       setState(() {
                                         loading = false;
                                       });
-
-                                      _currentCalories = caloriesvalue;
-
                                       _currentStep = stepvalue;
+                                      _currentCalories = caloriesvalue;
+                                      _currentHeart = heartvalue;
+                                      _currentWorkout = workoutvalue;
                                     })
                               ],
                             ),
