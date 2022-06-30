@@ -64,7 +64,7 @@ class Fetch extends State<Graphs> {
 
                 final List<BarChartModel> data_steps = [
                   BarChartModel('Today', double.parse(step_list_7?[0]).round(),
-                      Color(0xff95dbf2)),
+                      Color.fromARGB(255, 76, 162, 191)),
                   BarChartModel('1 day ago',
                       double.parse(step_list_7?[1]).round(), Color(0xffbde8f7)),
                   BarChartModel('2 days ago',
@@ -83,7 +83,7 @@ class Fetch extends State<Graphs> {
                   BarChartModel(
                       'Today',
                       double.parse(calories_list_7?[0]).round(),
-                      Color(0xff8ac3a6)),
+                      Color.fromARGB(255, 75, 152, 112)),
                   BarChartModel(
                       '1 day ago',
                       double.parse(calories_list_7?[1]).round(),
@@ -111,7 +111,7 @@ class Fetch extends State<Graphs> {
                 ];
                 final List<BarChartModel> data_heart = [
                   BarChartModel('Today', double.parse(heart_list_7?[0]).round(),
-                      Color(0xffff9c94)),
+                      Color.fromARGB(255, 173, 93, 88)),
                   BarChartModel(
                       '1 day ago',
                       double.parse(heart_list_7?[1]).round(),
@@ -141,7 +141,7 @@ class Fetch extends State<Graphs> {
                   BarChartModel(
                       'Today',
                       double.parse(workout_list_7?[0]).round(),
-                      Color(0xfff0bdfe)),
+                      Color.fromARGB(255, 165, 112, 180)),
                   BarChartModel(
                       '1 day ago',
                       double.parse(workout_list_7?[1]).round(),
@@ -245,7 +245,7 @@ class Fetch extends State<Graphs> {
                           const SizedBox(
                             height: 60.0,
                             child: Text(
-                              'Steps',
+                              'Steps(Target: 10000)',
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
@@ -279,7 +279,7 @@ class Fetch extends State<Graphs> {
                           const SizedBox(
                             height: 60.0,
                             child: Text(
-                              'Calories',
+                              'Calories(Target: 1800)',
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
@@ -322,7 +322,7 @@ class Fetch extends State<Graphs> {
                           const SizedBox(
                             height: 60.0,
                             child: Text(
-                              'Heart Resting State',
+                              'Heart Resting State(Target: <75 bpm)',
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
@@ -356,7 +356,7 @@ class Fetch extends State<Graphs> {
                           const SizedBox(
                             height: 30.0,
                             child: Text(
-                              'Work out',
+                              'Work out(Target: 20 min)',
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
