@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_app_exam/screens/home/profileedit.dart';
@@ -11,57 +10,70 @@ import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/user.dart';
 import 'package:fit_app_exam/screens/home/globals.dart' as globals;
 
-int algorithm(var heartRate, var exerciceHours, var workoutHours) {
+int algorithm(var heartRate, var calories, var workoutMinutes, var step) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
+  double par4 = 0;
   int results = 0;
 
-  if (heartRate < 8) {
-    par1 = (8 - heartRate) / 8;
+  if (heartRate > 75) {
+    par1 = (heartRate - 75) / 75;
   }
-  if (exerciceHours < 2) {
-    par2 = (2 - exerciceHours) / 2;
+  if (calories < 1800) {
+    par2 = (1800 - calories) / 1800;
   }
-  if (workoutHours < 0.8) {
-    par3 = (0.8 - workoutHours) / 0.8;
+  if (workoutMinutes < 22) {
+    par3 = (22 - workoutMinutes) / 22;
   }
-  if (par1 == par2 && par1 == par3) {
-    results = 3;
-  } else if (par2 < par1 && par3 < par1) {
-    results = 2;
-  } else if (par1 < par2 && par3 < par2) {
+  if (step < 10000) {
+    par4 = (10000 - step) / 10000;
+  }
+  if (par1 == par2 && par1 == par3 && par1 == par4) {
+    results = 5;
+  } else if (par2 < par1 && par3 < par1 && par4 < par1) {
     results = 1;
-  } else if (par1 < par3 && par2 < par3) {
+  } else if (par1 < par2 && par3 < par2 && par4 < par2) {
+    results = 2;
+  } else if (par1 < par3 && par2 < par3 && par4 < par3) {
+    results = 3;
+  } else if (par1 < par4 && par2 < par4 && par3 < par4) {
     results = 4;
   }
 
   return results;
 }
 
-double algorithm_bar(var heartRate, var exerciceHours, var workoutHours) {
+double algorithm_bar(
+    var heartRate, var calories, var workoutMinutes, var step) {
   double par2 = 0;
   double par1 = 0;
   double par3 = 0;
+  double par4 = 0;
   double results = 0;
 
-  if (heartRate < 8) {
-    par1 = (8 - heartRate) / 8;
+  if (heartRate > 75) {
+    par1 = (heartRate - 75) / 75;
   }
-  if (exerciceHours < 2) {
-    par2 = (2 - exerciceHours) / 2;
+  if (calories < 1800) {
+    par2 = (1800 - calories) / 1800;
   }
-  if (workoutHours < 0.8) {
-    par3 = (0.8 - workoutHours) / 0.8;
+  if (workoutMinutes < 22) {
+    par3 = (22 - workoutMinutes) / 22;
   }
-  if (par1 == par2 && par1 == par3) {
+  if (step < 10000) {
+    par4 = (10000 - step) / 10000;
+  }
+  if (par1 == par2 && par1 == par3 && par1 == par4) {
     results = 0.0;
-  } else if (par2 < par1 && par3 < par1) {
+  } else if (par2 < par1 && par3 < par1 && par4 < par1) {
     results = par1;
-  } else if (par1 < par2 && par3 < par2) {
+  } else if (par1 < par2 && par3 < par2 && par4 < par2) {
     results = par2;
-  } else if (par1 < par3 && par2 < par3) {
+  } else if (par1 < par3 && par2 < par3 && par4 < par3) {
     results = par3;
+  } else if (par1 < par4 && par2 < par4 && par3 < par4) {
+    results = par4;
   }
 
   return results;
@@ -70,12 +82,14 @@ double algorithm_bar(var heartRate, var exerciceHours, var workoutHours) {
 String check(int test) {
   String imagecheck = '';
 
-  if (test == 1) {
+  if (test == 2) {
     imagecheck = "https://c.tenor.com/OTiUFg5Z2coAAAAC/pusheen-play.gif";
-  } else if (test == 2) {
+  } else if (test == 1) {
     imagecheck = "https://c.tenor.com/TRZAcsIM70oAAAAC/grrr-cat.gif";
-  } else if (test == 3) {
+  } else if (test == 5) {
     imagecheck = 'https://c.tenor.com/sJnOE_eYvFcAAAAC/pusheen.gif';
+  } else if (test == 3) {
+    imagecheck = 'https://c.tenor.com/rQGUXTIPMOgAAAAC/lazy-pusheen.gif';
   } else if (test == 4) {
     imagecheck = 'https://c.tenor.com/qnS4hoUXnQMAAAAC/pusheen.gif';
   }
@@ -84,14 +98,16 @@ String check(int test) {
 
 String checktext(int test) {
   String textcheck = '';
-  if (test == 1) {
+  if (test == 2) {
     textcheck = 'Your pet needs less calories!';
-  } else if (test == 2) {
+  } else if (test == 1) {
     textcheck = 'Your pet needs to relax!';
-  } else if (test == 3) {
+  } else if (test == 5) {
     textcheck = 'Your pet is perfectly healty!';
-  } else if (test == 4) {
+  } else if (test == 3) {
     textcheck = 'Your pet needs to work out!';
+  } else if (test == 4) {
+    textcheck = 'Your pet need to walk more!';
   }
   return textcheck;
 }
@@ -101,15 +117,10 @@ class home_2 extends StatefulWidget {
   State<home_2> createState() => _home_2State();
 }
 
-var heartRate = Random().nextDouble() * 10;
-var exerciceHours = Random().nextDouble() * 4;
-var workoutHours = Random().nextDouble() * 1;
+// var heartRate = Random().nextDouble() * 10;
+// var calories = Random().nextDouble() * 4;
+// var workoutMinutes = Random().nextDouble() * 1;
 String? _currentLoginDate;
-
-double percentageCompletion =
-    (1 - (algorithm_bar(heartRate, exerciceHours, workoutHours))) * 100;
-
-int test = algorithm(heartRate, exerciceHours, workoutHours);
 
 class _home_2State extends State<home_2> {
   final AuthService _auth = AuthService();
@@ -200,7 +211,21 @@ class _home_2State extends State<home_2> {
                     globals.checknick = false;
                     return Profile();
                   }
+                  var heartRate_week = userData.heart;
+                  var heartRate = double.parse(heartRate_week?[0]);
+                  var calories_week = userData.calories;
+                  var calories = double.parse(calories_week?[0]);
+                  var workoutMinutes_week = userData.workout;
+                  var workoutMinutes = double.parse(workoutMinutes_week?[0]);
+                  var step_week = userData.step;
+                  var step = double.parse(step_week?[0]);
+                  double percentageCompletion = (1 -
+                          (algorithm_bar(
+                              heartRate, calories, workoutMinutes, step))) *
+                      100;
 
+                  int test =
+                      algorithm(heartRate, calories, workoutMinutes, step);
                   globals.checknick = true;
                   return Container(
                       height: MediaQuery.of(context).size.height,
@@ -248,8 +273,8 @@ class _home_2State extends State<home_2> {
                                     animationDuration: 1200,
                                     padding: const EdgeInsets.only(top: 10.0),
                                     percent: (1 -
-                                        (algorithm_bar(heartRate, exerciceHours,
-                                            workoutHours))),
+                                        (algorithm_bar(heartRate, calories,
+                                            workoutMinutes, step))),
                                     progressColor: Colors.red,
                                     backgroundColor: Colors.green,
                                     center: Text(
