@@ -7,6 +7,7 @@ import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/constants.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
+
 import 'package:fit_app_exam/screens/home/globals.dart' as globals;
 
 class Profile extends StatefulWidget {
