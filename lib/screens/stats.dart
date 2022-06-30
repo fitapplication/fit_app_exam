@@ -5,6 +5,7 @@ import 'package:fit_app_exam/services/database.dart';
 import 'package:fit_app_exam/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:fit_app_exam/models/user.dart';
+import 'package:fit_app_exam/screens/home/globals.dart' as globals;
 
 class Graphs extends StatefulWidget {
   const Graphs({Key? key}) : super(key: key);
@@ -60,70 +61,111 @@ class Fetch extends State<Graphs> {
                 var heart_list_7 = userData?.heart;
 
                 var workout_list_7 = userData?.workout;
+
                 final List<BarChartModel> data_steps = [
                   BarChartModel('Today', double.parse(step_list_7?[0]).round(),
-                      Colors.blue),
+                      Color(0xff95dbf2)),
                   BarChartModel('1 day ago',
-                      double.parse(step_list_7?[1]).round(), Colors.red),
+                      double.parse(step_list_7?[1]).round(), Color(0xffbde8f7)),
                   BarChartModel('2 days ago',
-                      double.parse(step_list_7?[2]).round(), Colors.yellow),
+                      double.parse(step_list_7?[2]).round(), Color(0xffbde8f7)),
                   BarChartModel('3 days ago',
-                      double.parse(step_list_7?[3]).round(), Colors.brown),
+                      double.parse(step_list_7?[3]).round(), Color(0xffbde8f7)),
                   BarChartModel('4 days ago',
-                      double.parse(step_list_7?[4]).round(), Colors.indigo),
+                      double.parse(step_list_7?[4]).round(), Color(0xffbde8f7)),
                   BarChartModel('5 days ago',
-                      double.parse(step_list_7?[5]).round(), Colors.purple),
+                      double.parse(step_list_7?[5]).round(), Color(0xffbde8f7)),
                   BarChartModel('6 days ago',
-                      double.parse(step_list_7?[6]).round(), Colors.orange),
+                      double.parse(step_list_7?[6]).round(), Color(0xffbde8f7)),
                 ];
 
                 final List<BarChartModel> data_calories = [
-                  BarChartModel('Today',
-                      double.parse(calories_list_7?[0]).round(), Colors.blue),
-                  BarChartModel('1 day ago',
-                      double.parse(calories_list_7?[1]).round(), Colors.red),
-                  BarChartModel('2 days ago',
-                      double.parse(calories_list_7?[2]).round(), Colors.yellow),
-                  BarChartModel('3 days ago',
-                      double.parse(calories_list_7?[3]).round(), Colors.brown),
-                  BarChartModel('4 days ago',
-                      double.parse(calories_list_7?[4]).round(), Colors.indigo),
-                  BarChartModel('5 days ago',
-                      double.parse(calories_list_7?[5]).round(), Colors.purple),
-                  BarChartModel('6 days ago',
-                      double.parse(calories_list_7?[6]).round(), Colors.orange),
+                  BarChartModel(
+                      'Today',
+                      double.parse(calories_list_7?[0]).round(),
+                      Color(0xff8ac3a6)),
+                  BarChartModel(
+                      '1 day ago',
+                      double.parse(calories_list_7?[1]).round(),
+                      Color(0xffa6dbc7)),
+                  BarChartModel(
+                      '2 days ago',
+                      double.parse(calories_list_7?[2]).round(),
+                      Color(0xffa6dbc7)),
+                  BarChartModel(
+                      '3 days ago',
+                      double.parse(calories_list_7?[3]).round(),
+                      Color(0xffa6dbc7)),
+                  BarChartModel(
+                      '4 days ago',
+                      double.parse(calories_list_7?[4]).round(),
+                      Color(0xffa6dbc7)),
+                  BarChartModel(
+                      '5 days ago',
+                      double.parse(calories_list_7?[5]).round(),
+                      Color(0xffa6dbc7)),
+                  BarChartModel(
+                      '6 days ago',
+                      double.parse(calories_list_7?[6]).round(),
+                      Color(0xffa6dbc7)),
                 ];
                 final List<BarChartModel> data_heart = [
                   BarChartModel('Today', double.parse(heart_list_7?[0]).round(),
-                      Colors.blue),
-                  BarChartModel('1 day ago',
-                      double.parse(heart_list_7?[1]).round(), Colors.red),
-                  BarChartModel('2 days ago',
-                      double.parse(heart_list_7?[2]).round(), Colors.yellow),
-                  BarChartModel('3 days ago',
-                      double.parse(heart_list_7?[3]).round(), Colors.brown),
-                  BarChartModel('4 days ago',
-                      double.parse(heart_list_7?[4]).round(), Colors.indigo),
-                  BarChartModel('5 days ago',
-                      double.parse(heart_list_7?[5]).round(), Colors.purple),
-                  BarChartModel('6 days ago',
-                      double.parse(heart_list_7?[6]).round(), Colors.orange),
+                      Color(0xffff9c94)),
+                  BarChartModel(
+                      '1 day ago',
+                      double.parse(heart_list_7?[1]).round(),
+                      Color(0xfffeb5a6)),
+                  BarChartModel(
+                      '2 days ago',
+                      double.parse(heart_list_7?[2]).round(),
+                      Color(0xfffeb5a6)),
+                  BarChartModel(
+                      '3 days ago',
+                      double.parse(heart_list_7?[3]).round(),
+                      Color(0xfffeb5a6)),
+                  BarChartModel(
+                      '4 days ago',
+                      double.parse(heart_list_7?[4]).round(),
+                      Color(0xfffeb5a6)),
+                  BarChartModel(
+                      '5 days ago',
+                      double.parse(heart_list_7?[5]).round(),
+                      Color(0xfffeb5a6)),
+                  BarChartModel(
+                      '6 days ago',
+                      double.parse(heart_list_7?[6]).round(),
+                      Color(0xfffeb5a6)),
                 ];
                 final List<BarChartModel> data_workout = [
-                  BarChartModel('Today',
-                      double.parse(workout_list_7?[0]).round(), Colors.blue),
-                  BarChartModel('1 day ago',
-                      double.parse(workout_list_7?[1]).round(), Colors.red),
-                  BarChartModel('2 days ago',
-                      double.parse(workout_list_7?[2]).round(), Colors.yellow),
-                  BarChartModel('3 days ago',
-                      double.parse(workout_list_7?[3]).round(), Colors.brown),
-                  BarChartModel('4 days ago',
-                      double.parse(workout_list_7?[4]).round(), Colors.indigo),
-                  BarChartModel('5 days ago',
-                      double.parse(workout_list_7?[5]).round(), Colors.purple),
-                  BarChartModel('6 days ago',
-                      double.parse(workout_list_7?[6]).round(), Colors.orange),
+                  BarChartModel(
+                      'Today',
+                      double.parse(workout_list_7?[0]).round(),
+                      Color(0xfff0bdfe)),
+                  BarChartModel(
+                      '1 day ago',
+                      double.parse(workout_list_7?[1]).round(),
+                      Color(0xffeed7f4)),
+                  BarChartModel(
+                      '2 days ago',
+                      double.parse(workout_list_7?[2]).round(),
+                      Color(0xffeed7f4)),
+                  BarChartModel(
+                      '3 days ago',
+                      double.parse(workout_list_7?[3]).round(),
+                      Color(0xffeed7f4)),
+                  BarChartModel(
+                      '4 days ago',
+                      double.parse(workout_list_7?[4]).round(),
+                      Color(0xffeed7f4)),
+                  BarChartModel(
+                      '5 days ago',
+                      double.parse(workout_list_7?[5]).round(),
+                      Color(0xffeed7f4)),
+                  BarChartModel(
+                      '6 days ago',
+                      double.parse(workout_list_7?[6]).round(),
+                      Color(0xffeed7f4)),
                 ];
                 // List? _currentStep;
                 List<charts.Series<BarChartModel, String>> series_steps = [

@@ -142,7 +142,7 @@ class _home_2State extends State<home_2> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('PetFit'),
-          backgroundColor: Colors.blue[400],
+          backgroundColor: Color(0xffabdbe3),
           elevation: 0.0,
           actions: <Widget>[
             FlatButton.icon(
@@ -154,7 +154,7 @@ class _home_2State extends State<home_2> {
             ),
             FlatButton.icon(
                 onPressed: () => _showSettingPanel(),
-                icon: const Icon(Icons.privacy_tip),
+                icon: const Icon(Icons.privacy_tip, color: Color(0xff154c79)),
                 label: const Text('Privacy Info'))
           ],
         ),
@@ -239,7 +239,7 @@ class _home_2State extends State<home_2> {
                                     image: NetworkImage(check(test)),
                                     fit: BoxFit.cover),
                                 border: Border.all(
-                                  color: const Color.fromARGB(255, 185, 19, 19),
+                                  color: const Color(0xff76b5c5),
                                   width: 8,
                                 ),
                                 borderRadius: BorderRadius.circular(25),
@@ -275,8 +275,8 @@ class _home_2State extends State<home_2> {
                                     percent: (1 -
                                         (algorithm_bar(heartRate, calories,
                                             workoutMinutes, step))),
-                                    progressColor: Colors.red,
-                                    backgroundColor: Colors.green,
+                                    progressColor: const Color(0xff1e81b0),
+                                    backgroundColor: const Color(0xffabdbe3),
                                     center: Text(
                                       'You have completed ${double.parse(percentageCompletion.toStringAsFixed(2))}% of your daily goal',
                                       textAlign: TextAlign.center,
