@@ -307,6 +307,15 @@ class Fetch extends State<Graphs> {
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
+                                // charts.RangeAnnotation([
+                                //   charts.LineAnnotationSegment(
+                                //     1800,
+                                //     charts.RangeAnnotationAxisType.measure,
+                                //     labelDirection: charts
+                                //         .AnnotationLabelDirection.horizontal,
+                                //     startLabel: 'Daily target',
+                                //   )
+                                // ]),
                               ],
                             ),
                           ),
